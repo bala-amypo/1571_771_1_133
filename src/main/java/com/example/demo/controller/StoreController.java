@@ -1,4 +1,4 @@
-package com.example.Multi.Controller;
+package com.example.demo.controller;
 
 import java.util.List;
 
@@ -6,8 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import com.example.Multi.Model.Store;
-import com.example.Multi.Service.StoreService;
+import com.example.demo.model.Store;
+import com.example.demo.service.StoreService;
 
 @RestController
 @RequestMapping("/api/stores")
