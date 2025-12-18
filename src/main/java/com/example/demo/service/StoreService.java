@@ -10,4 +10,6 @@ public interface StoreService {
     List<Store> getStore();
 
     Store getById(long id);
+    
+    Store getStoreById(long stored);
 }

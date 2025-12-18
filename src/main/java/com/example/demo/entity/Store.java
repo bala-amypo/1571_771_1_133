@@ -22,7 +22,9 @@ public class Store {
     private boolean active = true;
 
     
-    public Store() {}
+    public Store() {
+        
+    }
 
     public Store(long id, String storeName, String address, String region, boolean active) {
         this.id = id;
