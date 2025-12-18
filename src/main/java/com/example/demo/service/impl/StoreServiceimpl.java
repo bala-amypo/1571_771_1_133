@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.demo.model.Store;
+import com.example.demo.entity.Store;
 import com.example.demo.repository.StoreRepository;
 import com.example.demo.service.StoreService;
 
