@@ -1,13 +1,13 @@
-package com.example.Multi.Service.impl;
+package com.example.emo.service.impl;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.service;
 
-import com.example.Multi.Model.Store;
-import com.example.Multi.Repository.StoreRepository;
-import com.example.Multi.Service.StoreService; 
+import com.example.demo.entity.Store;
+import com.example.demo.repository.StoreRepository;
+import com.example.demo.service.StoreService;
 @Service
 public class StoreServiceimpl implements StoreService {
 

@@ -1,4 +1,4 @@
-package com.example.Multi.Model;
+package com.example.demo.entity;
 
 import jakarta.persistence.*;
 
@@ -21,7 +21,7 @@ public class Store {
     @Column(nullable = false)
     private boolean active = true;
 
-    // Required by JPA
+    
     public Store() {}
 
     public Store(long id, String storeName, String address, String region, boolean active) {

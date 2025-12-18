@@ -1,7 +1,7 @@
-package com.example.Multi.Service;
+package com.example.demo.service;
 
 import java.util.List;
-import com.example.Multi.Model.Store;
+import com.example.demo.entity.Store;
 
 public interface StoreService {
 
