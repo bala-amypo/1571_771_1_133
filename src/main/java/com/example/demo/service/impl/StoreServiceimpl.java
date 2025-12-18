@@ -1,13 +1,14 @@
-package com.example.emo.service.impl;
+package com.example.demo.service.impl;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.service;
+import org.springframework.stereotype.Service;
 
-import com.example.demo.entity.Store;
+import com.example.demo.model.Store;
 import com.example.demo.repository.StoreRepository;
 import com.example.demo.service.StoreService;
+
 @Service
 public class StoreServiceimpl implements StoreService {
 
@@ -16,11 +17,9 @@ public class StoreServiceimpl implements StoreService {
 
     @Override
     public Store createStore(Store store) {
-
         if (storeRepository.findByStoreName(store.getStoreName()).isPresent()) {
             throw new RuntimeException("Store name already exists");
         }
-
         return storeRepository.save(store);
     }
 
