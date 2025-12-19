@@ -1,30 +1,10 @@
 package com.example.demo.service;
 
+import com.example.demo.entity.Store;
 import java.util.List;
-import com.example.demo.entity.Store;
 
 public interface StoreService {
-
     Store createStore(Store store);
-
-    List<Store> getStore();
-
-    Store getById(long id);
-
-    Store getStoreById(long storeId);
-}
-package com.example.demo.service;
-
-import com.example.demo.entity.Store;
-
-public interface StoreService {
     Store getStoreById(long id);
-   
-    Store createStore(Store store);
-
-    List<Store> getStore();
-
-    Store getById(long id);
-
-    Store getStoreById(long storeId);
+    List<Store> getAllStores();
 }
