@@ -11,7 +11,7 @@ import java.time.LocalDate;
 import java.util.*;
 
 @Service
-public class InventoryBalancerServiceimpl implements InventoryBalancerService {
+public class InventoryBalancerServiceimpl implements InventoryBalancerService {  // Matches your file name!
 
     private final TransferSuggestionRepository transferSuggestionRepository;
     private final InventoryLevelRepository inventoryLevelRepository;
@@ -19,7 +19,7 @@ public class InventoryBalancerServiceimpl implements InventoryBalancerService {
     private final StoreRepository storeRepository;
     private final ProductRepository productRepository;
 
-    public InventoryBalancerServiceImpl(
+    public InventoryBalancerServiceimpl(  // Constructor now matches class name
             TransferSuggestionRepository transferSuggestionRepository,
             InventoryLevelRepository inventoryLevelRepository,
             DemandForecastRepository demandForecastRepository,
@@ -120,8 +120,7 @@ public class InventoryBalancerServiceimpl implements InventoryBalancerService {
         List<TransferSuggestion> source = transferSuggestionRepository.findBySourceStoreId(storeId);
         List<TransferSuggestion> target = transferSuggestionRepository.findByTargetStoreId(storeId);
 
-        List<TransferSuggestion> all = new ArrayList<>();
-        all.addAll(source);
+        List<TransferSuggestion> all = new ArrayList<>(source);
         all.addAll(target);
         return all;
     }
