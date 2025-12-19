@@ -1,17 +1,37 @@
-package com.example.demo.repository;
 
-import java.time.LocalDate;
+package com.example.demo.service.impl;
 
-import java.util.Optional;
-
-import org.springframework.data.jpa.repository.JpaRepository;
-
-import com.example.demo.entity.DemandForecast;
+import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import com.example.demo.entity.Product;
-import com.example.demo.entity.Store;
+import com.example.demo.exception.BadRequestException;
+import com.example.demo.exception.ResourceNotFoundException;
+import com.example.demo.repository.ProductRepository;
+import com.example.demo.service.ProductService;
 
-public interface DemandForecastRepository extends JpaRepository<DemandForecast, Long> {
-    Optional<DemandForecast> findByStoreAndProductAndForecastDateAfter(Store store, Product product, LocalDate date);
+@Service
+public class ProductServiceimpl implements ProductService {
 
-    DemandForecast save(DemandForecast forecast);
+    @Autowired
+    private ProductRepository productRepository;
+
+    @Override
+    public Product createProduct(Product product) {
+        if (productRepository.findBySku(product.getSku()).isPresent()) {
+            throw new BadRequestException("SKU already exists");
+        }
+        return productRepository.save(product);
+    }
+
+    @Override
+    public Product getProductById(long id) {
+        return productRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Product not found"));
+    }
+
+    @Override
+    public List<Product> getAllProducts() {
+        return productRepository.findAll();
+    }
 }
