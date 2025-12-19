@@ -97,9 +97,8 @@ public class InventoryBalancerServiceimpl implements InventoryBalancerService {
             }
         }
 
-        // THIS IS THE IMPORTANT LINE – we only return TransferSuggestion objects
-        return suggestions.isEmpty() 
-                ? Collections.emptyList() 
+        return suggestions.isEmpty()
+                ? Collections.emptyList()
                 : transferSuggestionRepository.saveAll(suggestions);
     }
 
