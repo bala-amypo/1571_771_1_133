@@ -44,15 +44,15 @@ public class InventoryBalancerServiceimpl implements InventoryBalancerService {
         Map<Store, Integer> deficits = new HashMap<>();
 
         for (Store store : stores) {
-            // Fixed: safely get quantity, default to 0 if no record
+            // Safely get current inventory quantity (default 0 if no record)
             int inventory = inventoryLevelRepository.findByStoreAndProduct(store, product)
                     .map(InventoryLevel::getQuantity)
                     .orElse(0);
 
-            // Back to your original query method (simpler and likely exists)
+            // Use your original working forecast query
             DemandForecast forecast = demandForecastRepository
                     .findByStoreAndProductAndForecastDateAfter(store, product, LocalDate.now())
-                    .orElseThrow(() -> new BadRequestException("No forecast found for store " + store.getId()));
+                    .orElseThrow(() -> new BadRequestException("No forecast found for store: " + store.getId()));
 
             int demand = forecast.getPredictedDemand();
             int difference = inventory - demand;
@@ -66,16 +66,16 @@ public class InventoryBalancerServiceimpl implements InventoryBalancerService {
 
         List<TransferSuggestion> suggestions = new ArrayList<>();
 
-        for (Map.Entry<Store, Integer> surplusEntry : surpluses.entrySet()) {
-            Store source = surplusEntry.getKey();
-            int remainingSurplus = surplusEntry.getValue();
+        for (Map.Entry<Store, Integer> surplus : surpluses.entrySet()) {
+            Store source = surplus.getKey();
+            int remainingSurplus = surplus.getValue();
 
             Iterator<Map.Entry<Store, Integer>> deficitIter = deficits.entrySet().iterator();
 
             while (remainingSurplus > 0 && deficitIter.hasNext()) {
-                Map.Entry<Store, Integer> deficitEntry = deficitIter.next();
-                Store target = deficitEntry.getKey();
-                int remainingDeficit = deficitEntry.getValue();
+                Map.Entry<Store, Integer> deficit = deficitIter.next();
+                Store target = deficit.getKey();
+                int remainingDeficit = deficit.getValue();
 
                 int transferQty = Math.min(remainingSurplus, remainingDeficit);
 
@@ -92,7 +92,7 @@ public class InventoryBalancerServiceimpl implements InventoryBalancerService {
                 }
 
                 remainingSurplus -= transferQty;
-                deficitEntry.setValue(remainingDeficit - transferQty);
+                deficit.setValue(remainingDeficit - transferQty);
 
                 if (remainingDeficit - transferQty <= 0) {
                     deficitIter.remove();
@@ -100,9 +100,10 @@ public class InventoryBalancerServiceimpl implements InventoryBalancerService {
             }
         }
 
-        return suggestions.isEmpty() 
-               ? Collections.emptyList() 
-               : transferSuggestionRepository.saveAll(suggestions);
+        // Save and return only TransferSuggestion objects
+        return suggestions.isEmpty()
+                ? Collections.emptyList()
+                : transferSuggestionRepository.saveAll(suggestions);
     }
 
     private String determinePriority(int quantity) {
@@ -113,17 +114,17 @@ public class InventoryBalancerServiceimpl implements InventoryBalancerService {
 
     @Override
     public List<TransferSuggestion> getSuggestionsForStore(long storeId) {
-        List<TransferSuggestion> source = transferSuggestionRepository.findBySourceStoreId(storeId);
-        List<TransferSuggestion> target = transferSuggestionRepository.findByTargetStoreId(storeId);
+        List<TransferSuggestion> outgoing = transferSuggestionRepository.findBySourceStoreId(storeId);
+        List<TransferSuggestion> incoming = transferSuggestionRepository.findByTargetStoreId(storeId);
 
-        List<TransferSuggestion> all = new ArrayList<>(source);
-        all.addAll(target);
+        List<TransferSuggestion> all = new ArrayList<>(outgoing);
+        all.addAll(incoming);
         return all;
     }
 
     @Override
     public TransferSuggestion getSuggestionById(long id) {
         return transferSuggestionRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Transfer suggestion not found with id: " + id));
+                .orElseThrow(() -> new ResourceNotFoundException("Suggestion not found: " + id));
     }
 }
