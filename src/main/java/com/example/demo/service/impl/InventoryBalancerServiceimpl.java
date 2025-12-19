@@ -11,14 +11,13 @@ import java.time.LocalDate;
 import java.util.*;
 
 @Service
-public class InventoryBalancerServiceImpl implements InventoryBalancerService {  // Fixed: capital "I" in Impl
+public class InventoryBalancerServiceimpl implements InventoryBalancerService {  
 
     private final TransferSuggestionRepository transferSuggestionRepository;
     private final InventoryLevelRepository inventoryLevelRepository;
     private final DemandForecastRepository demandForecastRepository;
     private final StoreRepository storeRepository;
-    private final ProductRepository productRepository;  // Added: needed to fetch real Product
-
+    private final ProductRepository productRepository; 
     public InventoryBalancerServiceImpl(
             TransferSuggestionRepository transferSuggestionRepository,
             InventoryLevelRepository inventoryLevelRepository,
