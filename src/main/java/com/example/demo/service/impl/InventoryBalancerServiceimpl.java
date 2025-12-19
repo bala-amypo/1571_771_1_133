@@ -11,7 +11,7 @@ import java.time.LocalDate;
 import java.util.*;
 
 @Service
-public class InventoryBalancerServiceimpl implements InventoryBalancerService {  // Matches your file name!
+public class InventoryBalancerServiceimpl implements InventoryBalancerService {
 
     private final TransferSuggestionRepository transferSuggestionRepository;
     private final InventoryLevelRepository inventoryLevelRepository;
@@ -19,7 +19,7 @@ public class InventoryBalancerServiceimpl implements InventoryBalancerService { 
     private final StoreRepository storeRepository;
     private final ProductRepository productRepository;
 
-    public InventoryBalancerServiceimpl(  // Constructor now matches class name
+    public InventoryBalancerServiceimpl(
             TransferSuggestionRepository transferSuggestionRepository,
             InventoryLevelRepository inventoryLevelRepository,
             DemandForecastRepository demandForecastRepository,
@@ -44,14 +44,15 @@ public class InventoryBalancerServiceimpl implements InventoryBalancerService { 
         Map<Store, Integer> deficits = new HashMap<>();
 
         for (Store store : stores) {
-            InventoryLevel inv = inventoryLevelRepository.findByStoreAndProduct(store, product)
-                    .orElse(new InventoryLevel(store, product, 0));
+            // Fixed: safely get quantity, default to 0 if no record
+            int inventory = inventoryLevelRepository.findByStoreAndProduct(store, product)
+                    .map(InventoryLevel::getQuantity)
+                    .orElse(0);
 
-            int inventory = inv.getQuantity() != null ? inv.getQuantity() : 0;
-
+            // Back to your original query method (simpler and likely exists)
             DemandForecast forecast = demandForecastRepository
-                    .findFirstByStoreAndProductAndForecastDateAfterOrderByForecastDateAsc(store, product, LocalDate.now())
-                    .orElseThrow(() -> new BadRequestException("No demand forecast found for store: " + store.getId()));
+                    .findByStoreAndProductAndForecastDateAfter(store, product, LocalDate.now())
+                    .orElseThrow(() -> new BadRequestException("No forecast found for store " + store.getId()));
 
             int demand = forecast.getPredictedDemand();
             int difference = inventory - demand;
@@ -99,19 +100,14 @@ public class InventoryBalancerServiceimpl implements InventoryBalancerService { 
             }
         }
 
-        if (suggestions.isEmpty()) {
-            return Collections.emptyList();
-        }
-
-        return transferSuggestionRepository.saveAll(suggestions);
+        return suggestions.isEmpty() 
+               ? Collections.emptyList() 
+               : transferSuggestionRepository.saveAll(suggestions);
     }
 
     private String determinePriority(int quantity) {
-        if (quantity > 100) {
-            return "HIGH";
-        } else if (quantity > 20) {
-            return "MEDIUM";
-        }
+        if (quantity > 100) return "HIGH";
+        if (quantity > 20) return "MEDIUM";
         return "LOW";
     }
 
