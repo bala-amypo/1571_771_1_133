@@ -25,7 +25,6 @@ public class InventoryBalancerServiceimpl implements InventoryBalancerService {
             DemandForecastRepository demandForecastRepository,
             StoreRepository storeRepository,
             ProductRepository productRepository) {
-
         this.transferSuggestionRepository = transferSuggestionRepository;
         this.inventoryLevelRepository = inventoryLevelRepository;
         this.demandForecastRepository = demandForecastRepository;
@@ -44,12 +43,10 @@ public class InventoryBalancerServiceimpl implements InventoryBalancerService {
         Map<Store, Integer> deficits = new HashMap<>();
 
         for (Store store : stores) {
-            // Safely get current inventory quantity (default 0 if no record)
             int inventory = inventoryLevelRepository.findByStoreAndProduct(store, product)
                     .map(InventoryLevel::getQuantity)
                     .orElse(0);
 
-            // Use your original working forecast query
             DemandForecast forecast = demandForecastRepository
                     .findByStoreAndProductAndForecastDateAfter(store, product, LocalDate.now())
                     .orElseThrow(() -> new BadRequestException("No forecast found for store: " + store.getId()));
@@ -66,16 +63,16 @@ public class InventoryBalancerServiceimpl implements InventoryBalancerService {
 
         List<TransferSuggestion> suggestions = new ArrayList<>();
 
-        for (Map.Entry<Store, Integer> surplus : surpluses.entrySet()) {
-            Store source = surplus.getKey();
-            int remainingSurplus = surplus.getValue();
+        for (Map.Entry<Store, Integer> surplusEntry : surpluses.entrySet()) {
+            Store source = surplusEntry.getKey();
+            int remainingSurplus = surplusEntry.getValue();
 
-            Iterator<Map.Entry<Store, Integer>> deficitIter = deficits.entrySet().iterator();
+            Iterator<Map.Entry<Store, Integer>> deficitIterator = deficits.entrySet().iterator();
 
-            while (remainingSurplus > 0 && deficitIter.hasNext()) {
-                Map.Entry<Store, Integer> deficit = deficitIter.next();
-                Store target = deficit.getKey();
-                int remainingDeficit = deficit.getValue();
+            while (remainingSurplus > 0 && deficitIterator.hasNext()) {
+                Map.Entry<Store, Integer> deficitEntry = deficitIterator.next();
+                Store target = deficitEntry.getKey();
+                int remainingDeficit = deficitEntry.getValue();
 
                 int transferQty = Math.min(remainingSurplus, remainingDeficit);
 
@@ -92,17 +89,17 @@ public class InventoryBalancerServiceimpl implements InventoryBalancerService {
                 }
 
                 remainingSurplus -= transferQty;
-                deficit.setValue(remainingDeficit - transferQty);
+                deficitEntry.setValue(remainingDeficit - transferQty);
 
                 if (remainingDeficit - transferQty <= 0) {
-                    deficitIter.remove();
+                    deficitIterator.remove();
                 }
             }
         }
 
-        // Save and return only TransferSuggestion objects
-        return suggestions.isEmpty()
-                ? Collections.emptyList()
+        // THIS IS THE IMPORTANT LINE – we only return TransferSuggestion objects
+        return suggestions.isEmpty() 
+                ? Collections.emptyList() 
                 : transferSuggestionRepository.saveAll(suggestions);
     }
 
