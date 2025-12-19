@@ -1,8 +1,7 @@
 package com.example.demo.repository;
 
 import java.time.LocalDate;
-
-import java.util.Optional;
+import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
@@ -10,8 +9,12 @@ import com.example.demo.entity.DemandForecast;
 import com.example.demo.entity.Product;
 import com.example.demo.entity.Store;
 
-public interface DemandForecastRepository extends JpaRepository<DemandForecast, Long> {
-    Optional<DemandForecast> findByStoreAndProductAndForecastDateAfter(Store store, Product product, LocalDate date);
+public interface DemandForecastRepository
+        extends JpaRepository<DemandForecast, Long> {
 
-    DemandForecast save(DemandForecast forecast);
+    List<DemandForecast> findByStoreAndProductAndForecastDateAfter(
+            Store store,
+            Product product,
+            LocalDate date
+    );
 }
