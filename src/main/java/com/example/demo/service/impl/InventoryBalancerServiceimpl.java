@@ -5,6 +5,7 @@ import com.example.demo.exception.BadRequestException;
 import com.example.demo.exception.ResourceNotFoundException;
 import com.example.demo.repository.*;
 import com.example.demo.service.InventoryBalancerService;
+
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -18,12 +19,12 @@ public class InventoryBalancerServiceimpl implements InventoryBalancerService {
     private final DemandForecastRepository demandForecastRepository;
     private final StoreRepository storeRepository;
 
-    // Exact constructor order as required by the helper document
     public InventoryBalancerServiceimpl(
             TransferSuggestionRepository transferSuggestionRepository,
             InventoryLevelRepository inventoryLevelRepository,
             DemandForecastRepository demandForecastRepository,
             StoreRepository storeRepository) {
+
         this.transferSuggestionRepository = transferSuggestionRepository;
         this.inventoryLevelRepository = inventoryLevelRepository;
         this.demandForecastRepository = demandForecastRepository;
@@ -32,76 +33,79 @@ public class InventoryBalancerServiceimpl implements InventoryBalancerService {
 
     @Override
     public List<TransferSuggestion> generateSuggestions(Long productId) {
-        // Fetch product via existing inventory records
+
         Product product = inventoryLevelRepository.findByProduct_Id(productId)
                 .stream()
                 .findFirst()
                 .map(InventoryLevel::getProduct)
-                .orElseThrow(() -> new ResourceNotFoundException("Product not found with id: " + productId));
+                .orElseThrow(() ->
+                        new ResourceNotFoundException("Product not found with id: " + productId));
 
-        // Check product is active (required by test t61)
         if (!product.isActive()) {
             throw new BadRequestException("Cannot generate suggestions for inactive product");
         }
 
         List<Store> stores = storeRepository.findAll();
-
         Map<Store, Integer> surpluses = new HashMap<>();
         Map<Store, Integer> deficits = new HashMap<>();
 
         for (Store store : stores) {
-            int inventory = inventoryLevelRepository.findByStoreAndProduct(store, product)
+
+            int inventory = inventoryLevelRepository
+                    .findByStoreAndProduct(store, product)
                     .map(InventoryLevel::getQuantity)
                     .orElse(0);
 
-            List<DemandForecast> forecasts = demandForecastRepository
-                    .findByStoreAndProductAndForecastDateAfter(store, product, LocalDate.now());
+            List<DemandForecast> forecasts =
+                    demandForecastRepository.findByStoreAndProductAndForecastDateAfter(
+                            store, product, LocalDate.now());
 
             if (forecasts.isEmpty()) {
                 throw new BadRequestException("No forecast found");
             }
 
             int demand = forecasts.get(0).getPredictedDemand();
-            int difference = inventory - demand;
+            int diff = inventory - demand;
 
-            if (difference > 0) {
-                surpluses.put(store, difference);
-            } else if (difference < 0) {
-                deficits.put(store, -difference);
+            if (diff > 0) {
+                surpluses.put(store, diff);
+            } else if (diff < 0) {
+                deficits.put(store, -diff);
             }
         }
 
         List<TransferSuggestion> suggestions = new ArrayList<>();
 
-        for (Map.Entry<Store, Integer> surplusEntry : surpluses.entrySet()) {
-            Store source = surplusEntry.getKey();
-            int remainingSurplus = surplusEntry.getValue();
+        for (Map.Entry<Store, Integer> surplus : surpluses.entrySet()) {
 
-            Iterator<Map.Entry<Store, Integer>> deficitIterator = deficits.entrySet().iterator();
+            Store source = surplus.getKey();
+            int remainingSurplus = surplus.getValue();
+
+            Iterator<Map.Entry<Store, Integer>> deficitIterator =
+                    deficits.entrySet().iterator();
 
             while (remainingSurplus > 0 && deficitIterator.hasNext()) {
-                Map.Entry<Store, Integer> deficitEntry = deficitIterator.next();
-                Store target = deficitEntry.getKey();
-                int remainingDeficit = deficitEntry.getValue();
+
+                Map.Entry<Store, Integer> deficit = deficitIterator.next();
+                Store target = deficit.getKey();
+                int remainingDeficit = deficit.getValue();
 
                 int transferQty = Math.min(remainingSurplus, remainingDeficit);
 
-                if (transferQty > 0) {
-                    TransferSuggestion suggestion = new TransferSuggestion();
-                    suggestion.setSourceStore(source);
-                    suggestion.setTargetStore(target);
-                    suggestion.setProduct(product);
-                    suggestion.setQuantity(transferQty);
-                    suggestion.setPriority(determinePriority(transferQty));
-                    suggestion.setStatus("PENDING");
+                TransferSuggestion suggestion = new TransferSuggestion();
+                suggestion.setSourceStore(source);
+                suggestion.setTargetStore(target);
+                suggestion.setProduct(product);
+                suggestion.setQuantity(transferQty);
+                suggestion.setPriority(determinePriority(transferQty));
+                suggestion.setStatus("PENDING");
 
-                    suggestions.add(suggestion);
-                }
+                suggestions.add(suggestion);
 
                 remainingSurplus -= transferQty;
-                deficitEntry.setValue(remainingDeficit - transferQty);
+                deficit.setValue(remainingDeficit - transferQty);
 
-                if (remainingDeficit - transferQty <= 0) {
+                if (deficit.getValue() <= 0) {
                     deficitIterator.remove();
                 }
             }
@@ -113,18 +117,19 @@ public class InventoryBalancerServiceimpl implements InventoryBalancerService {
     }
 
     private String determinePriority(int quantity) {
-        if (quantity > 100) {
-            return "HIGH";
-        } else if (quantity > 20) {
-            return "MEDIUM";
-        }
+        if (quantity > 100) return "HIGH";
+        if (quantity > 20) return "MEDIUM";
         return "LOW";
     }
 
     @Override
     public List<TransferSuggestion> getSuggestionsForStore(Long storeId) {
-        List<TransferSuggestion> outgoing = transferSuggestionRepository.findBySourceStoreId(storeId);
-        List<TransferSuggestion> incoming = transferSuggestionRepository.findByTargetStoreId(storeId);
+
+        List<TransferSuggestion> outgoing =
+                transferSuggestionRepository.findBySourceStoreId(storeId);
+
+        List<TransferSuggestion> incoming =
+                transferSuggestionRepository.findByTargetStoreId(storeId);
 
         List<TransferSuggestion> all = new ArrayList<>(outgoing);
         all.addAll(incoming);
@@ -134,6 +139,7 @@ public class InventoryBalancerServiceimpl implements InventoryBalancerService {
     @Override
     public TransferSuggestion getSuggestionById(Long id) {
         return transferSuggestionRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("not found"));
+                .orElseThrow(() ->
+                        new ResourceNotFoundException("Suggestion not found"));
     }
 }
