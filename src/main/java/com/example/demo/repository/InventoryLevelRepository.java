@@ -15,4 +15,7 @@ public interface InventoryLevelRepository
     List<InventoryLevel> findByProduct_Id(Long productId);
 
     Optional<InventoryLevel> findByStoreAndProduct(Store store, Product product);
+
+    // ✅ ADD THIS
+    List<InventoryLevel> findByStore(Store store);
 }
