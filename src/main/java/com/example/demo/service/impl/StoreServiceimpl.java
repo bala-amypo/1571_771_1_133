@@ -7,8 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.example.demo.entity.Store;
 import com.example.demo.repository.StoreRepository;
-import com.example.demo.service.StoreService;
-
+import com.example.demo.service.StoreService; 
 @Service
 public class StoreServiceimpl implements StoreService {
 
@@ -17,9 +16,11 @@ public class StoreServiceimpl implements StoreService {
 
     @Override
     public Store createStore(Store store) {
+
         if (storeRepository.findByStoreName(store.getStoreName()).isPresent()) {
             throw new RuntimeException("Store name already exists");
         }
+
         return storeRepository.save(store);
     }
 
@@ -33,6 +34,7 @@ public class StoreServiceimpl implements StoreService {
         return storeRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Store not found with id: " + id));
     }
+
     @Override
     public Store getStoreById(long storeId) {
         

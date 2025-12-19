@@ -1,10 +1,13 @@
 package com.example.demo.service;
 
-import com.example.demo.entity.Store;
 import java.util.List;
 
+import com.example.demo.entity.Store;
+
 public interface StoreService {
+
     Store createStore(Store store);
-    Store getStoreById(long id);
-    List<Store> getAllStores();
+    List<Store> getStore();
+    Store getById(long id);
+    Store getStoreById(long storeId);
 }
