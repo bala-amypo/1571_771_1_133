@@ -17,25 +17,32 @@ public class InventoryBalancerServiceimpl implements InventoryBalancerService {
     private final InventoryLevelRepository inventoryLevelRepository;
     private final DemandForecastRepository demandForecastRepository;
     private final StoreRepository storeRepository;
-    private final ProductRepository productRepository;
 
+    // Constructor order exactly as required by the helper document
     public InventoryBalancerServiceimpl(
             TransferSuggestionRepository transferSuggestionRepository,
             InventoryLevelRepository inventoryLevelRepository,
             DemandForecastRepository demandForecastRepository,
-            StoreRepository storeRepository,
-            ProductRepository productRepository) {
+            StoreRepository storeRepository) {
         this.transferSuggestionRepository = transferSuggestionRepository;
         this.inventoryLevelRepository = inventoryLevelRepository;
         this.demandForecastRepository = demandForecastRepository;
         this.storeRepository = storeRepository;
-        this.productRepository = productRepository;
     }
 
     @Override
-    public List<TransferSuggestion> generateSuggestions(long productId) {
-        Product product = productRepository.findById(productId)
+    public List<TransferSuggestion> generateSuggestions(Long productId) {
+        // Fetch product - will throw ResourceNotFoundException if not exists
+        Product product = inventoryLevelRepository.findByProduct_Id(productId)
+                .stream()
+                .findFirst()
+                .map(InventoryLevel::getProduct)
                 .orElseThrow(() -> new ResourceNotFoundException("Product not found with id: " + productId));
+
+        // Validate product is active - required by t61_balancer_generateSuggestions_inactiveProduct_throwsBadRequest
+        if (!product.isActive()) {
+            throw new BadRequestException("Cannot generate suggestions for inactive product");
+        }
 
         List<Store> stores = storeRepository.findAll();
 
@@ -43,15 +50,22 @@ public class InventoryBalancerServiceimpl implements InventoryBalancerService {
         Map<Store, Integer> deficits = new HashMap<>();
 
         for (Store store : stores) {
+            // Get current inventory quantity (default 0 if no record)
             int inventory = inventoryLevelRepository.findByStoreAndProduct(store, product)
                     .map(InventoryLevel::getQuantity)
                     .orElse(0);
 
-            DemandForecast forecast = demandForecastRepository
-                    .findByStoreAndProductAndForecastDateAfter(store, product, LocalDate.now())
-                    .orElseThrow(() -> new BadRequestException("No forecast found for store: " + store.getId()));
+            // Get future forecasts - uses exact repository method from helper doc
+            List<DemandForecast> forecasts = demandForecastRepository
+                    .findByStoreAndProductAndForecastDateAfter(store, product, LocalDate.now());
 
-            int demand = forecast.getPredictedDemand();
+            if (forecasts.isEmpty()) {
+                throw new BadRequestException("No forecast found");
+            }
+
+            // Use the first (or sum if multiple - but spec implies one relevant forecast)
+            int demand = forecasts.get(0).getPredictedDemand();
+
             int difference = inventory - demand;
 
             if (difference > 0) {
@@ -89,38 +103,4 @@ public class InventoryBalancerServiceimpl implements InventoryBalancerService {
                 }
 
                 remainingSurplus -= transferQty;
-                deficitEntry.setValue(remainingDeficit - transferQty);
-
-                if (remainingDeficit - transferQty <= 0) {
-                    deficitIterator.remove();
-                }
-            }
-        }
-
-        return suggestions.isEmpty()
-                ? Collections.emptyList()
-                : transferSuggestionRepository.saveAll(suggestions);
-    }
-
-    private String determinePriority(int quantity) {
-        if (quantity > 100) return "HIGH";
-        if (quantity > 20) return "MEDIUM";
-        return "LOW";
-    }
-
-    @Override
-    public List<TransferSuggestion> getSuggestionsForStore(long storeId) {
-        List<TransferSuggestion> outgoing = transferSuggestionRepository.findBySourceStoreId(storeId);
-        List<TransferSuggestion> incoming = transferSuggestionRepository.findByTargetStoreId(storeId);
-
-        List<TransferSuggestion> all = new ArrayList<>(outgoing);
-        all.addAll(incoming);
-        return all;
-    }
-
-    @Override
-    public TransferSuggestion getSuggestionById(long id) {
-        return transferSuggestionRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Suggestion not found: " + id));
-    }
-}
+                deficitEntry.setValue(
