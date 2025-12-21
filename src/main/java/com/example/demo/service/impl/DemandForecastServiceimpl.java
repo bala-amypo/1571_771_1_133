@@ -20,9 +20,7 @@ public class DemandForecastServiceimpl implements DemandForecastService {
     private final StoreService storeService;
     private final ProductService productService;
 
-    public DemandForecastServiceimpl(DemandForecastRepository demandForecastRepository,
-                                     StoreService storeService,
-                                     ProductService productService) {
+    public DemandForecastServiceimpl(DemandForecastRepository demandForecastRepository,StoreService storeService,ProductService productService) {                        
         this.demandForecastRepository = demandForecastRepository;
         this.storeService = storeService;
         this.productService = productService;
@@ -45,17 +43,14 @@ public class DemandForecastServiceimpl implements DemandForecastService {
         Store store = storeService.getStoreById(storeId);
         Product product = productService.getProductById(productId);
 
-        List<DemandForecast> forecasts =
-                demandForecastRepository
-                        .findByStoreAndProductAndForecastDateAfter(
-                                store, product, LocalDate.now()
-                        );
+        List<DemandForecast> forecasts =demandForecastRepository.findByStoreAndProductAndForecastDateAfter(
+                 store, product, LocalDate.now()
+      );
 
         if (forecasts.isEmpty()) {
             throw new BadRequestException("No forecast found");
         }
 
-        // Return the first future forecast
         return forecasts.get(0);
     }
 }

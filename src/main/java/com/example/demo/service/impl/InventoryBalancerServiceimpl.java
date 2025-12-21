@@ -21,7 +21,7 @@ public class InventoryBalancerServiceimpl implements InventoryBalancerService {
     private final StoreRepository storeRepository;
     private final ProductService productService;
 
-    // Constructor order preserved
+    
     public InventoryBalancerServiceimpl(
             TransferSuggestionRepository transferSuggestionRepository,
             InventoryLevelRepository inventoryLevelRepository,
@@ -41,7 +41,7 @@ public class InventoryBalancerServiceimpl implements InventoryBalancerService {
 
         Product product = productService.getProductById(productId);
 
-        // ✅ FIXED
+       
         if (!product.isActive()) {
             throw new BadRequestException("Product is inactive");
         }
@@ -66,7 +66,7 @@ public class InventoryBalancerServiceimpl implements InventoryBalancerService {
 
                 for (InventoryLevel target : inventoryLevels) {
 
-                    // ✅ FIXED: primitive comparison
+                    
                     if (target.getStore().getId() != source.getStore().getId()
                             && target.getQuantity() < demand) {
 
