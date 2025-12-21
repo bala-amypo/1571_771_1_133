@@ -35,5 +35,49 @@ public class TransferSuggestion {
         }
     }
 
-    // getters and setters
+     public long getId() {
+      return id;
+   }
+   public Store getSourceStore() { 
+      return sourceStore; 
+   }
+   public Store getTargetStore() {
+     return targetStore; 
+   }
+   public Product getProduct() { 
+      return product; 
+   }
+   public int getQuantity() {
+      return quantity; 
+   }
+   public String getPriority() {
+     return priority; 
+   }
+   public Timestamp getSuggestedAt() {
+     return suggestedAt; 
+   }
+   public String getStatus() {
+    return status;
+   }
+   public void setId(long id) {
+      this.id = id; 
+   }
+   public void setSourceStore(Store sourceStore) {
+     this.sourceStore = sourceStore; 
+   }
+   public void setTargetStore(Store targetStore) { 
+      this.targetStore = targetStore; 
+   }
+   public void setProduct(Product product) { 
+      this.product = product;
+   }
+   public void setQuantity(int quantity) { 
+      this.quantity = quantity; 
+   }
+   public void setPriority(String priority) {
+      this.priority = priority;
+   }
+   public void setStatus(String status) {
+      this.status = status; 
+   }
 }
