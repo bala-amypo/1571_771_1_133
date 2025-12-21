@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name = "product", uniqueConstraints = {
-        @UniqueConstraint(columnNames = "sku")
+    @UniqueConstraint(columnNames = "sku")
 })
 public class Product {
 

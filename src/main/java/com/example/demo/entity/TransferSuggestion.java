@@ -34,8 +34,6 @@ public class TransferSuggestion {
             this.status = "PENDING";
         }
     }
-
-    // -------- getters --------
     public Long getId() {
         return id;
     }
@@ -67,8 +65,6 @@ public class TransferSuggestion {
     public String getStatus() {
         return status;
     }
-
-    // -------- setters --------
     public void setId(Long id) {
         this.id = id;
     }

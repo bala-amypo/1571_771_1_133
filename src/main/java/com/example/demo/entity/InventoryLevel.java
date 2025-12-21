@@ -27,17 +27,35 @@ public class InventoryLevel {
     }
 
     
-    public Long getId() { return id; }
-    public void setId(Long id) { this.id = id; }
+    public Long getId() {
+        return id;
+    }
+    public void setId(Long id) { 
+        this.id = id; 
+    }
 
-    public Store getStore() { return store; }
-    public void setStore(Store store) { this.store = store; }
+    public Store getStore() { 
+       return store;
+    }
+    public void setStore(Store store) { 
+       this.store = store;
+    }
 
-    public Product getProduct() { return product; }
-    public void setProduct(Product product) { this.product = product; }
+    public Product getProduct() {
+        return product;
+    }
+    public void setProduct(Product product) { 
+        this.product = product; 
+    }
 
-    public Integer getQuantity() { return quantity; }
-    public void setQuantity(Integer quantity) { this.quantity = quantity; }
+    public Integer getQuantity() {
+        return quantity;
+    }
+    public void setQuantity(Integer quantity) { 
+        this.quantity = quantity;
+    }
 
-    public LocalDateTime getLastUpdated() { return lastUpdated; }
+    public LocalDateTime getLastUpdated() { 
+        return lastUpdated; 
+    }
 }
