@@ -11,6 +11,7 @@ import com.example.demo.service.StoreService;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Service
 public class DemandForecastServiceimpl implements DemandForecastService {
@@ -29,17 +30,32 @@ public class DemandForecastServiceimpl implements DemandForecastService {
 
     @Override
     public DemandForecast createForecast(DemandForecast forecast) {
-        if (!forecast.getForecastDate().isAfter(LocalDate.now())) {
-            throw new IllegalArgumentException("Forecast date must be in the future");
+
+        if (forecast.getForecastDate() == null ||
+            !forecast.getForecastDate().isAfter(LocalDate.now())) {
+            throw new BadRequestException("Forecast date must be in the future");
         }
+
         return demandForecastRepository.save(forecast);
     }
 
     @Override
     public DemandForecast getForecast(long storeId, long productId) {
+
         Store store = storeService.getStoreById(storeId);
         Product product = productService.getProductById(productId);
-        return demandForecastRepository.findByStoreAndProductAndForecastDateAfter(store, product, LocalDate.now())
-                .orElseThrow(() -> new BadRequestException("No forecast found"));
+
+        List<DemandForecast> forecasts =
+                demandForecastRepository
+                        .findByStoreAndProductAndForecastDateAfter(
+                                store, product, LocalDate.now()
+                        );
+
+        if (forecasts.isEmpty()) {
+            throw new BadRequestException("No forecast found");
+        }
+
+        // Return the first future forecast
+        return forecasts.get(0);
     }
 }
