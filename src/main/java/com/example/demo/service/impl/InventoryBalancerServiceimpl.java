@@ -21,7 +21,7 @@ public class InventoryBalancerServiceimpl implements InventoryBalancerService {
     private final StoreRepository storeRepository;
     private final ProductService productService;
 
-    public InventoryBalancerServiceImpl(
+    public InventoryBalancerServiceimpl(
             TransferSuggestionRepository transferSuggestionRepository,
             InventoryLevelRepository inventoryLevelRepository,
             DemandForecastRepository demandForecastRepository,

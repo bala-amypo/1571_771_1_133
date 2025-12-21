@@ -14,13 +14,13 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class InventoryLevelServiceImpl implements InventoryLevelService {
+public class InventoryLevelServiceimpl implements InventoryLevelService {
 
     private final InventoryLevelRepository inventoryLevelRepository;
     private final StoreService storeService;
     private final ProductService productService;
 
-    public InventoryLevelServiceImpl(
+    public InventoryLevelServiceimpl(
             InventoryLevelRepository inventoryLevelRepository,
             StoreService storeService,
             ProductService productService) {
