@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class InventoryBalancerServiceimpl implements InventoryBalancerService {
+public class InventoryBalancerServiceImpl implements InventoryBalancerService {
 
     private final TransferSuggestionRepository transferSuggestionRepository;
     private final InventoryLevelRepository inventoryLevelRepository;
@@ -21,7 +21,8 @@ public class InventoryBalancerServiceimpl implements InventoryBalancerService {
     private final StoreRepository storeRepository;
     private final ProductService productService;
 
-    public InventoryBalancerServiceimpl(
+    // Constructor order preserved
+    public InventoryBalancerServiceImpl(
             TransferSuggestionRepository transferSuggestionRepository,
             InventoryLevelRepository inventoryLevelRepository,
             DemandForecastRepository demandForecastRepository,
@@ -40,7 +41,8 @@ public class InventoryBalancerServiceimpl implements InventoryBalancerService {
 
         Product product = productService.getProductById(productId);
 
-        if (!product.getActive()) {
+        // ✅ FIXED
+        if (!product.isActive()) {
             throw new BadRequestException("Product is inactive");
         }
 
@@ -53,7 +55,8 @@ public class InventoryBalancerServiceimpl implements InventoryBalancerService {
 
             List<DemandForecast> forecasts =
                     demandForecastRepository.findByStoreAndProductAndForecastDateAfter(
-                            source.getStore(), product, LocalDate.now());
+                            source.getStore(), product, LocalDate.now()
+                    );
 
             if (forecasts.isEmpty()) continue;
 
@@ -63,7 +66,8 @@ public class InventoryBalancerServiceimpl implements InventoryBalancerService {
 
                 for (InventoryLevel target : inventoryLevels) {
 
-                    if (!target.getStore().getId().equals(source.getStore().getId())
+                    // ✅ FIXED: primitive comparison
+                    if (target.getStore().getId() != source.getStore().getId()
                             && target.getQuantity() < demand) {
 
                         int qty = Math.min(
@@ -80,7 +84,8 @@ public class InventoryBalancerServiceimpl implements InventoryBalancerService {
                             ts.setPriority("MEDIUM");
 
                             suggestions.add(
-                                    transferSuggestionRepository.save(ts));
+                                    transferSuggestionRepository.save(ts)
+                            );
                         }
                     }
                 }
