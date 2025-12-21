@@ -15,20 +15,17 @@ public class StoreController {
 
     @Autowired
     StoreService storeService;
-
     
     @GetMapping
     public List<Store> getAll() {
         return storeService.getStore();
     }
-
     
     @PostMapping
     public ResponseEntity<Store> createAll(@RequestBody Store store) {
         Store st = storeService.createStore(store);
         return ResponseEntity.status(201).body(st);
     }
-
  
     @GetMapping("/{id}")
     public ResponseEntity<Store> getById(@PathVariable long id) {
