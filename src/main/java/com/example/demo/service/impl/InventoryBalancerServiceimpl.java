@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class InventoryBalancerServiceImpl implements InventoryBalancerService {
+public class InventoryBalancerServiceimpl implements InventoryBalancerService {
 
     private final TransferSuggestionRepository transferSuggestionRepository;
     private final InventoryLevelRepository inventoryLevelRepository;
@@ -22,7 +22,7 @@ public class InventoryBalancerServiceImpl implements InventoryBalancerService {
     private final ProductService productService;
 
     // Constructor order preserved
-    public InventoryBalancerServiceImpl(
+    public InventoryBalancerServiceimpl(
             TransferSuggestionRepository transferSuggestionRepository,
             InventoryLevelRepository inventoryLevelRepository,
             DemandForecastRepository demandForecastRepository,
