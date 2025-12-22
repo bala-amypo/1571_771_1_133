@@ -42,6 +42,11 @@ public Store getStoreById(Long storeId) {
             .orElseThrow(() ->
                     new ResourceNotFoundException("Store not found"));
 }
+ @Override
+    public Store getStoreById(long storeId) {
+        
+        throw new UnsupportedOperationException("Unimplemented method 'getStoreById'");
+    }
 
 }
  
