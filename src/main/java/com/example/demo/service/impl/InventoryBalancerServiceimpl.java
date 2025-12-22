@@ -93,10 +93,10 @@ public class InventoryBalancerServiceimpl implements InventoryBalancerService {
         }
 
         if (suggestions.isEmpty()) {
-            throw new BadRequestException("No forecast found");
+            return suggestions;
         }
 
-        return suggestions;
+        
     }
 
     @Override
