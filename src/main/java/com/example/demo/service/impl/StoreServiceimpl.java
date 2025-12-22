@@ -37,7 +37,7 @@ public class StoreServiceimpl implements StoreService {
 
     @Override
     public Store getStoreById(long storeId) {
-        
+        return storeRepository.findById(storeId).orElseThrow(()->)
         throw new UnsupportedOperationException("Unimplemented method 'getStoreById'");
     }
     
