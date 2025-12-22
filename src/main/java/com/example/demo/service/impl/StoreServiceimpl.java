@@ -35,18 +35,10 @@ public class StoreServiceimpl implements StoreService {
                 .orElseThrow(() -> new RuntimeException("Store not found with id: " + id));
     }
 
-   
     @Override
-public Store getStoreById(Long storeId) {
-    return storeRepository.findById(id)
-            .orElseThrow(() ->
-                    new ResourceNotFoundException("Store not found"));
-}
- @Override
     public Store getStoreById(long storeId) {
         
         throw new UnsupportedOperationException("Unimplemented method 'getStoreById'");
     }
-
+    
 }
- 
