@@ -92,9 +92,9 @@ public class InventoryBalancerServiceimpl implements InventoryBalancerService {
             }
         }
 
-        if (suggestions.isEmpty()) {
+       
             return suggestions;
-        }
+        
 
         
     }
