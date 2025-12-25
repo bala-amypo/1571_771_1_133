@@ -30,7 +30,19 @@ public class ProductServiceimpl implements ProductService {
     }
 
     @Override
+    public Product getProductById(Long id) {
+        return getProductById(id.longValue());
+    }
+
+    @Override
     public List<Product> getAllProducts() {
         return productRepository.findAll();
+    }
+
+    @Override
+    public void deactivateProduct(Long id) {
+        Product product = getProductById(id);
+        product.setActive(false);
+        productRepository.save(product);
     }
 }

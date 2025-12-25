@@ -20,7 +20,9 @@ public class DemandForecastServiceimpl implements DemandForecastService {
     private final StoreService storeService;
     private final ProductService productService;
 
-    public DemandForecastServiceimpl(DemandForecastRepository demandForecastRepository,StoreService storeService,ProductService productService) {                        
+    public DemandForecastServiceimpl(DemandForecastRepository demandForecastRepository,
+                                     StoreService storeService,
+                                     ProductService productService) {                        
         this.demandForecastRepository = demandForecastRepository;
         this.storeService = storeService;
         this.productService = productService;
@@ -28,10 +30,15 @@ public class DemandForecastServiceimpl implements DemandForecastService {
 
     @Override
     public DemandForecast createForecast(DemandForecast forecast) {
-
+        // Validate forecast date is in the future
         if (forecast.getForecastDate() == null ||
             !forecast.getForecastDate().isAfter(LocalDate.now())) {
             throw new BadRequestException("Forecast date must be in the future");
+        }
+
+        // Validate predicted demand is non-negative
+        if (forecast.getPredictedDemand() < 0) {
+            throw new BadRequestException("Predicted demand must be >= 0");
         }
 
         return demandForecastRepository.save(forecast);
@@ -39,13 +46,12 @@ public class DemandForecastServiceimpl implements DemandForecastService {
 
     @Override
     public DemandForecast getForecast(long storeId, long productId) {
-
         Store store = storeService.getStoreById(storeId);
         Product product = productService.getProductById(productId);
 
-        List<DemandForecast> forecasts =demandForecastRepository.findByStoreAndProductAndForecastDateAfter(
-                 store, product, LocalDate.now()
-      );
+        List<DemandForecast> forecasts = demandForecastRepository.findByStoreAndProductAndForecastDateAfter(
+                store, product, LocalDate.now()
+        );
 
         if (forecasts.isEmpty()) {
             throw new BadRequestException("No forecast found");
@@ -53,5 +59,11 @@ public class DemandForecastServiceimpl implements DemandForecastService {
 
         return forecasts.get(0);
     }
-}
 
+    @Override
+    public List<DemandForecast> getForecastsForStore(Long storeId) {
+        // Validate store exists
+        storeService.getStoreById(storeId);
+        return demandForecastRepository.findByStore_Id(storeId);
+    }
+}
