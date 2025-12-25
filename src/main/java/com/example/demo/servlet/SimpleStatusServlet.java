@@ -12,7 +12,7 @@ import java.io.PrintWriter;
 public class SimpleStatusServlet extends HttpServlet {
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) 
+    public void doGet(HttpServletRequest req, HttpServletResponse resp)  // CHANGED: protected → public
             throws ServletException, IOException {
         
         resp.setContentType("text/plain");
