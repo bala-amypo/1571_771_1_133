@@ -17,5 +17,7 @@ public interface DemandForecastRepository extends JpaRepository<DemandForecast, 
             LocalDate date
     );
 
-    List<DemandForecast> findByStore_Id(Long storeId); // Added missing method
+    List<DemandForecast> findByStore_Id(Long storeId);
+
+    List<DemandForecast> findByProduct_Id(Long productId);  // Added this method
 }
