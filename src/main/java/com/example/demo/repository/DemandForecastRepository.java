@@ -9,12 +9,13 @@ import com.example.demo.entity.DemandForecast;
 import com.example.demo.entity.Product;
 import com.example.demo.entity.Store;
 
-public interface DemandForecastRepository
-        extends JpaRepository<DemandForecast, Long> {
+public interface DemandForecastRepository extends JpaRepository<DemandForecast, Long> {
 
     List<DemandForecast> findByStoreAndProductAndForecastDateAfter(
             Store store,
             Product product,
             LocalDate date
     );
+
+    List<DemandForecast> findByStore_Id(Long storeId); // Added missing method
 }
