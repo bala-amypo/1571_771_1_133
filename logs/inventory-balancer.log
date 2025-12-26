@@ -53261,3 +53261,154 @@ Caused by: java.lang.NumberFormatException: For input string: "86400000#REMOVECO
 2025-12-26T16:32:38.237Z  INFO 178567 --- [demo] [http-nio-9001-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
 2025-12-26T16:32:38.238Z  INFO 178567 --- [demo] [http-nio-9001-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
 2025-12-26T16:32:48.217Z  INFO 178567 --- [demo] [http-nio-9001-exec-10] o.springdoc.api.AbstractOpenApiResource  : Init duration for springdoc-openapi is: 1988 ms
+2025-12-26T16:34:05.834Z DEBUG 178567 --- [demo] [http-nio-9001-exec-3] org.hibernate.SQL                        : 
+    select
+        ua1_0.id,
+        ua1_0.created_at,
+        ua1_0.email,
+        ua1_0.full_name,
+        ua1_0.password,
+        ua1_0.role,
+        ua1_0.updated_at 
+    from
+        user_account ua1_0 
+    where
+        ua1_0.email=?
+2025-12-26T16:34:24.019Z DEBUG 178567 --- [demo] [http-nio-9001-exec-4] org.hibernate.SQL                        : 
+    select
+        ua1_0.id,
+        ua1_0.created_at,
+        ua1_0.email,
+        ua1_0.full_name,
+        ua1_0.password,
+        ua1_0.role,
+        ua1_0.updated_at 
+    from
+        user_account ua1_0 
+    where
+        ua1_0.email=?
+2025-12-26T16:34:24.426Z DEBUG 178567 --- [demo] [http-nio-9001-exec-4] org.hibernate.SQL                        : 
+    insert 
+    into
+        user_account
+        (created_at, email, full_name, password, role, updated_at) 
+    values
+        (?, ?, ?, ?, ?, ?)
+2025-12-26T16:35:09.346Z DEBUG 178567 --- [demo] [http-nio-9001-exec-6] org.hibernate.SQL                        : 
+    select
+        ua1_0.id,
+        ua1_0.created_at,
+        ua1_0.email,
+        ua1_0.full_name,
+        ua1_0.password,
+        ua1_0.role,
+        ua1_0.updated_at 
+    from
+        user_account ua1_0 
+    where
+        ua1_0.email=?
+2025-12-26T16:35:09.550Z DEBUG 178567 --- [demo] [http-nio-9001-exec-6] org.hibernate.SQL                        : 
+    select
+        ua1_0.id,
+        ua1_0.created_at,
+        ua1_0.email,
+        ua1_0.full_name,
+        ua1_0.password,
+        ua1_0.role,
+        ua1_0.updated_at 
+    from
+        user_account ua1_0 
+    where
+        ua1_0.email=?
+2025-12-26T16:35:54.019Z DEBUG 178567 --- [demo] [http-nio-9001-exec-5] org.hibernate.SQL                        : 
+    select
+        ua1_0.id,
+        ua1_0.created_at,
+        ua1_0.email,
+        ua1_0.full_name,
+        ua1_0.password,
+        ua1_0.role,
+        ua1_0.updated_at 
+    from
+        user_account ua1_0 
+    where
+        ua1_0.email=?
+2025-12-26T16:35:54.035Z DEBUG 178567 --- [demo] [http-nio-9001-exec-5] org.hibernate.SQL                        : 
+    select
+        s1_0.id,
+        s1_0.active,
+        s1_0.address,
+        s1_0.region,
+        s1_0.store_name 
+    from
+        store s1_0
+2025-12-26T16:36:06.690Z DEBUG 178567 --- [demo] [http-nio-9001-exec-7] org.hibernate.SQL                        : 
+    select
+        ua1_0.id,
+        ua1_0.created_at,
+        ua1_0.email,
+        ua1_0.full_name,
+        ua1_0.password,
+        ua1_0.role,
+        ua1_0.updated_at 
+    from
+        user_account ua1_0 
+    where
+        ua1_0.email=?
+2025-12-26T16:36:06.700Z DEBUG 178567 --- [demo] [http-nio-9001-exec-7] org.hibernate.SQL                        : 
+    select
+        p1_0.id,
+        p1_0.active,
+        p1_0.category,
+        p1_0.name,
+        p1_0.sku 
+    from
+        product p1_0
+2025-12-26T16:36:10.159Z DEBUG 178567 --- [demo] [http-nio-9001-exec-8] org.hibernate.SQL                        : 
+    select
+        ua1_0.id,
+        ua1_0.created_at,
+        ua1_0.email,
+        ua1_0.full_name,
+        ua1_0.password,
+        ua1_0.role,
+        ua1_0.updated_at 
+    from
+        user_account ua1_0 
+    where
+        ua1_0.email=?
+2025-12-26T16:36:10.167Z DEBUG 178567 --- [demo] [http-nio-9001-exec-8] org.hibernate.SQL                        : 
+    select
+        p1_0.id,
+        p1_0.active,
+        p1_0.category,
+        p1_0.name,
+        p1_0.sku 
+    from
+        product p1_0
+2025-12-26T16:36:22.037Z DEBUG 178567 --- [demo] [http-nio-9001-exec-9] org.hibernate.SQL                        : 
+    select
+        ua1_0.id,
+        ua1_0.created_at,
+        ua1_0.email,
+        ua1_0.full_name,
+        ua1_0.password,
+        ua1_0.role,
+        ua1_0.updated_at 
+    from
+        user_account ua1_0 
+    where
+        ua1_0.email=?
+2025-12-26T16:36:24.265Z DEBUG 178567 --- [demo] [http-nio-9001-exec-1] org.hibernate.SQL                        : 
+    select
+        ua1_0.id,
+        ua1_0.created_at,
+        ua1_0.email,
+        ua1_0.full_name,
+        ua1_0.password,
+        ua1_0.role,
+        ua1_0.updated_at 
+    from
+        user_account ua1_0 
+    where
+        ua1_0.email=?
