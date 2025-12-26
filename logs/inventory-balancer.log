@@ -259,3 +259,7 @@ Caused by: java.lang.NumberFormatException: For input string: "86400000#REMOVECO
 2025-12-26T05:22:57.732Z  WARN 89389 --- [demo] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
 2025-12-26T05:23:00.018Z  INFO 89389 --- [demo] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 9001 (http) with context path '/'
 2025-12-26T05:23:00.038Z  INFO 89389 --- [demo] [main] com.example.demo.DemoApplication         : Started DemoApplication in 20.904 seconds (process running for 22.727)
+2025-12-26T05:24:24.634Z  INFO 89389 --- [demo] [http-nio-9001-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-12-26T05:24:24.634Z  INFO 89389 --- [demo] [http-nio-9001-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-12-26T05:24:24.637Z  INFO 89389 --- [demo] [http-nio-9001-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2025-12-26T05:24:34.852Z  INFO 89389 --- [demo] [http-nio-9001-exec-3] o.springdoc.api.AbstractOpenApiResource  : Init duration for springdoc-openapi is: 1992 ms
