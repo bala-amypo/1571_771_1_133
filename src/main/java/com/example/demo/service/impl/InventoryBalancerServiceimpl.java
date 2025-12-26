@@ -13,7 +13,6 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class InventoryBalancerServiceimpl implements InventoryBalancerService {
@@ -55,41 +54,40 @@ public class InventoryBalancerServiceimpl implements InventoryBalancerService {
         List<TransferSuggestion> suggestions = new ArrayList<>();
 
         for (InventoryLevel source : inventoryLevels) {
-            // FIX 1: Changed method name to match your entity
-            // Get today's or future forecasts
+            // Use the CORRECT repository method
             List<DemandForecast> forecasts = demandForecastRepository
-                .findByStoreAndProduct(source.getStore(), product);
-            
-            // Filter for future dates only
-            forecasts.removeIf(f -> f.getForecastDate().isBefore(LocalDate.now()));
+                .findByStoreAndProductAndForecastDateAfter(
+                    source.getStore(), 
+                    product, 
+                    LocalDate.now().minusDays(1)  // Today or future
+                );
 
             if (forecasts.isEmpty()) {
                 continue;
             }
 
-            // FIX 2: Changed getPredictedDemand() to getForecastedDemand()
             int demand = forecasts.get(0).getForecastedDemand();
             int excess = source.getQuantity() - demand;
 
             // Only suggest if we have significant excess (>20% of demand)
             if (excess > (demand * 0.2)) {
                 for (InventoryLevel target : inventoryLevels) {
-                    // FIX 3: Use .equals() for Long comparison, not ==
-                    if (target.getStore().getId().equals(source.getStore().getId())) {
+                    // Compare primitive longs using ==
+                    if (target.getStore().getId() == source.getStore().getId()) {
                         continue;
                     }
 
                     List<DemandForecast> targetForecasts = demandForecastRepository
-                        .findByStoreAndProduct(target.getStore(), product);
-                    
-                    // Filter for future dates
-                    targetForecasts.removeIf(f -> f.getForecastDate().isBefore(LocalDate.now()));
+                        .findByStoreAndProductAndForecastDateAfter(
+                            target.getStore(), 
+                            product, 
+                            LocalDate.now().minusDays(1)  // Today or future
+                        );
 
                     if (targetForecasts.isEmpty()) {
                         continue;
                     }
 
-                    // FIX 4: Changed getPredictedDemand() to getForecastedDemand()
                     int targetDemand = targetForecasts.get(0).getForecastedDemand();
                     int deficit = targetDemand - target.getQuantity();
 
@@ -103,8 +101,8 @@ public class InventoryBalancerServiceimpl implements InventoryBalancerService {
                             ts.setSourceStore(source.getStore());
                             ts.setTargetStore(target.getStore());
                             ts.setProduct(product);
-                            ts.setSuggestedQuantity(transferQty);  // FIX 5: Changed from setQuantity()
-                            ts.setReason("Inventory rebalancing needed");  // FIX 6: Set reason field
+                            ts.setSuggestedQuantity(transferQty);
+                            ts.setReason("Inventory rebalancing needed");
                             ts.setGeneratedAt(LocalDateTime.now());
                             ts.setStatus("PENDING");
 
