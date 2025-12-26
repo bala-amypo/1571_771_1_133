@@ -290,3 +290,6 @@ Caused by: java.lang.NumberFormatException: For input string: "86400000#REMOVECO
 2025-12-26T06:27:00.923Z  WARN 101196 --- [demo] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
 2025-12-26T06:27:03.130Z  INFO 101196 --- [demo] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 9001 (http) with context path '/'
 2025-12-26T06:27:03.214Z  INFO 101196 --- [demo] [main] com.example.demo.DemoApplication         : Started DemoApplication in 20.302 seconds (process running for 21.806)
+2025-12-26T06:32:48.787Z  INFO 101196 --- [demo] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-12-26T06:32:48.791Z  INFO 101196 --- [demo] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-12-26T06:32:48.799Z  INFO 101196 --- [demo] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
