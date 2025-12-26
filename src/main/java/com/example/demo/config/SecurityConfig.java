@@ -27,10 +27,20 @@ public class SecurityConfig {
             .csrf(csrf -> csrf.disable())
             .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
             .authorizeHttpRequests(auth -> auth
+                // 1. Public endpoints (NO AUTH NEEDED)
                 .requestMatchers("/auth/**").permitAll()
                 .requestMatchers("/simple-status").permitAll()
+                
+                // 2. Swagger/OpenAPI endpoints (NO AUTH NEEDED)
                 .requestMatchers("/swagger-ui/**").permitAll()
+                .requestMatchers("/swagger-ui.html").permitAll()
                 .requestMatchers("/v3/api-docs/**").permitAll()
+                .requestMatchers("/webjars/**").permitAll()
+                
+                // 3. API endpoints (REQUIRE AUTH)
+                .requestMatchers("/api/**").authenticated()
+                
+                // 4. Everything else (REQUIRE AUTH)
                 .anyRequest().authenticated()
             )
             .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
