@@ -5,13 +5,11 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import com.example.demo.entity.Store;
 import com.example.demo.service.StoreService;
 
 @RestController
 @RequestMapping("/api/stores")
-@SecurityRequirement(name = "bearerAuth")
 
 public class StoreController {
 
