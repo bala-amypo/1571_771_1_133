@@ -11,6 +11,7 @@ import com.example.demo.service.StoreService;
 
 @RestController
 @RequestMapping("/api/stores")
+@SecurityRequirement(name = "bearerAuth")
 
 public class StoreController {
 

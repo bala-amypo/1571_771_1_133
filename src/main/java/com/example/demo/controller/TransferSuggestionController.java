@@ -8,6 +8,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/suggestions")
+@SecurityRequirement(name = "bearerAuth")
 
 public class TransferSuggestionController {
 

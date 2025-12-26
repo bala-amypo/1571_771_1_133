@@ -9,7 +9,7 @@ import com.example.demo.service.ProductService;
 
 @RestController
 @RequestMapping("/api/products")
-
+@SecurityRequirement(name = "bearerAuth")
 public class ProductController {
 
     @Autowired
