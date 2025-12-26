@@ -53171,3 +53171,62 @@ Caused by: java.lang.NumberFormatException: For input string: "86400000#REMOVECO
         user_account ua1_0 
     where
         ua1_0.email=?
+2025-12-26T10:15:25.073Z DEBUG 142679 --- [demo] [http-nio-9001-exec-9] org.hibernate.SQL                        : 
+    select
+        ua1_0.id,
+        ua1_0.created_at,
+        ua1_0.email,
+        ua1_0.full_name,
+        ua1_0.password,
+        ua1_0.role,
+        ua1_0.updated_at 
+    from
+        user_account ua1_0 
+    where
+        ua1_0.email=?
+2025-12-26T10:15:25.247Z DEBUG 142679 --- [demo] [http-nio-9001-exec-9] org.hibernate.SQL                        : 
+    insert 
+    into
+        user_account
+        (created_at, email, full_name, password, role, updated_at) 
+    values
+        (?, ?, ?, ?, ?, ?)
+2025-12-26T10:15:59.693Z DEBUG 142679 --- [demo] [http-nio-9001-exec-10] org.hibernate.SQL                        : 
+    select
+        ua1_0.id,
+        ua1_0.created_at,
+        ua1_0.email,
+        ua1_0.full_name,
+        ua1_0.password,
+        ua1_0.role,
+        ua1_0.updated_at 
+    from
+        user_account ua1_0 
+    where
+        ua1_0.email=?
+2025-12-26T10:15:59.837Z DEBUG 142679 --- [demo] [http-nio-9001-exec-10] org.hibernate.SQL                        : 
+    select
+        ua1_0.id,
+        ua1_0.created_at,
+        ua1_0.email,
+        ua1_0.full_name,
+        ua1_0.password,
+        ua1_0.role,
+        ua1_0.updated_at 
+    from
+        user_account ua1_0 
+    where
+        ua1_0.email=?
+2025-12-26T10:16:20.483Z DEBUG 142679 --- [demo] [http-nio-9001-exec-2] org.hibernate.SQL                        : 
+    select
+        ua1_0.id,
+        ua1_0.created_at,
+        ua1_0.email,
+        ua1_0.full_name,
+        ua1_0.password,
+        ua1_0.role,
+        ua1_0.updated_at 
+    from
+        user_account ua1_0 
+    where
+        ua1_0.email=?
