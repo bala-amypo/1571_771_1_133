@@ -5,7 +5,7 @@ import io.jsonwebtoken.security.Keys;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
-import java.security.Key;
+import javax.crypto.SecretKey;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -14,15 +14,14 @@ import java.util.function.Function;
 @Component
 public class JwtUtil {
 
-    @Value("${jwt.secret:your-secret-key-at-least-32-chars-long-here}")
+    @Value("${jwt.secret}")
     private String secret;
 
-    @Value("${jwt.expiration:86400000}")
-    private long expiration;
+    @Value("${jwt.expiration}")
+    private Long expiration;
 
-    private Key getSigningKey() {
-        byte[] keyBytes = secret.getBytes();
-        return Keys.hmacShaKeyFor(keyBytes);
+    private SecretKey getSigningKey() {
+        return Keys.hmacShaKeyFor(secret.getBytes());
     }
 
     public String generateToken(Map<String, Object> claims, String subject) {

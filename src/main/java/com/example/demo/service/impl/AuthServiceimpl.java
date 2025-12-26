@@ -19,7 +19,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Service
-public class AuthServiceimpl implements AuthService {
+public class AuthServiceImpl implements AuthService {
 
     @Autowired
     private UserAccountRepository userAccountRepository;
