@@ -75141,3 +75141,7 @@ Caused by: java.lang.NumberFormatException: For input string: "86400000#REMOVECO
 2025-12-26T16:51:33.225Z  INFO 182846 --- [demo] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
 2025-12-26T16:51:33.308Z  INFO 182846 --- [demo] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
 2025-12-26T16:51:33.322Z  INFO 182846 --- [demo] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-12-26T16:51:47.912Z  INFO 182510 --- [demo] [http-nio-9001-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-12-26T16:51:47.912Z  INFO 182510 --- [demo] [http-nio-9001-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-12-26T16:51:47.915Z  INFO 182510 --- [demo] [http-nio-9001-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2025-12-26T16:52:04.114Z  INFO 182510 --- [demo] [http-nio-9001-exec-9] o.springdoc.api.AbstractOpenApiResource  : Init duration for springdoc-openapi is: 2025 ms
