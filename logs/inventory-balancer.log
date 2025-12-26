@@ -53144,3 +53144,30 @@ Caused by: java.lang.NumberFormatException: For input string: "86400000#REMOVECO
 2025-12-26T10:10:23.728Z  INFO 142679 --- [demo] [http-nio-9001-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
 2025-12-26T10:10:23.729Z  INFO 142679 --- [demo] [http-nio-9001-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
 2025-12-26T10:10:23.732Z  INFO 142679 --- [demo] [http-nio-9001-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2025-12-26T10:10:36.415Z  INFO 142679 --- [demo] [http-nio-9001-exec-1] o.springdoc.api.AbstractOpenApiResource  : Init duration for springdoc-openapi is: 2378 ms
+2025-12-26T10:11:32.452Z DEBUG 142679 --- [demo] [http-nio-9001-exec-5] org.hibernate.SQL                        : 
+    select
+        ua1_0.id,
+        ua1_0.created_at,
+        ua1_0.email,
+        ua1_0.full_name,
+        ua1_0.password,
+        ua1_0.role,
+        ua1_0.updated_at 
+    from
+        user_account ua1_0 
+    where
+        ua1_0.email=?
+2025-12-26T10:11:53.985Z DEBUG 142679 --- [demo] [http-nio-9001-exec-8] org.hibernate.SQL                        : 
+    select
+        ua1_0.id,
+        ua1_0.created_at,
+        ua1_0.email,
+        ua1_0.full_name,
+        ua1_0.password,
+        ua1_0.role,
+        ua1_0.updated_at 
+    from
+        user_account ua1_0 
+    where
+        ua1_0.email=?
