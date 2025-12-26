@@ -6,10 +6,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import com.example.demo.entity.Product;
 import com.example.demo.service.ProductService;
-import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+
 @RestController
 @RequestMapping("/api/products")
-@SecurityRequirement(name = "bearerAuth")
+
 public class ProductController {
 
     @Autowired

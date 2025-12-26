@@ -11,7 +11,7 @@ import com.example.demo.service.StoreService;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 @RestController
 @RequestMapping("/api/stores")
-@SecurityRequirement(name = "bearerAuth")
+
 public class StoreController {
 
     @Autowired
