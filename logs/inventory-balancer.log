@@ -87365,3 +87365,4 @@ Caused by: java.lang.NumberFormatException: For input string: "86400000#REMOVECO
 2025-12-26T17:09:34.335Z  INFO 186302 --- [demo] [http-nio-9001-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
 2025-12-26T17:09:34.336Z  INFO 186302 --- [demo] [http-nio-9001-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
 2025-12-26T17:09:34.338Z  INFO 186302 --- [demo] [http-nio-9001-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2025-12-26T17:09:41.936Z  INFO 186302 --- [demo] [http-nio-9001-exec-1] o.springdoc.api.AbstractOpenApiResource  : Init duration for springdoc-openapi is: 1710 ms
