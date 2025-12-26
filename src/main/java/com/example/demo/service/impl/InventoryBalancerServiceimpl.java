@@ -10,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -54,61 +53,47 @@ public class InventoryBalancerServiceimpl implements InventoryBalancerService {
         List<TransferSuggestion> suggestions = new ArrayList<>();
 
         for (InventoryLevel source : inventoryLevels) {
-            // Use the CORRECT repository method
-            List<DemandForecast> forecasts = demandForecastRepository
-                .findByStoreAndProductAndForecastDateAfter(
-                    source.getStore(), 
-                    product, 
-                    LocalDate.now().minusDays(1)  // Today or future
-                );
+            List<DemandForecast> forecasts = demandForecastRepository.findByStoreAndProductAndForecastDateAfter(
+                    source.getStore(), product, LocalDate.now()
+            );
 
             if (forecasts.isEmpty()) {
                 continue;
             }
 
-            int demand = forecasts.get(0).getForecastedDemand();
+            int demand = forecasts.get(0).getPredictedDemand();
             int excess = source.getQuantity() - demand;
 
-            // Only suggest if we have significant excess (>20% of demand)
-            if (excess > (demand * 0.2)) {
+            if (excess > 0) {
                 for (InventoryLevel target : inventoryLevels) {
-                    // Compare primitive longs using ==
+                    // FIX: Compare primitive longs using ==
                     if (target.getStore().getId() == source.getStore().getId()) {
                         continue;
                     }
 
-                    List<DemandForecast> targetForecasts = demandForecastRepository
-                        .findByStoreAndProductAndForecastDateAfter(
-                            target.getStore(), 
-                            product, 
-                            LocalDate.now().minusDays(1)  // Today or future
-                        );
+                    List<DemandForecast> targetForecasts = demandForecastRepository.findByStoreAndProductAndForecastDateAfter(
+                            target.getStore(), product, LocalDate.now()
+                    );
 
                     if (targetForecasts.isEmpty()) {
                         continue;
                     }
 
-                    int targetDemand = targetForecasts.get(0).getForecastedDemand();
+                    int targetDemand = targetForecasts.get(0).getPredictedDemand();
                     int deficit = targetDemand - target.getQuantity();
 
-                    // Only suggest if significant deficit (>30% of demand)
-                    if (deficit > (targetDemand * 0.3)) {
+                    if (deficit > 0) {
                         int transferQty = Math.min(excess, deficit);
-                        
-                        // Ensure minimum transfer quantity (at least 5 units)
-                        if (transferQty >= 5) {
+                        if (transferQty > 0) {
                             TransferSuggestion ts = new TransferSuggestion();
                             ts.setSourceStore(source.getStore());
                             ts.setTargetStore(target.getStore());
                             ts.setProduct(product);
-                            ts.setSuggestedQuantity(transferQty);
-                            ts.setReason("Inventory rebalancing needed");
-                            ts.setGeneratedAt(LocalDateTime.now());
+                            ts.setQuantity(transferQty);
+                            ts.setPriority("MEDIUM");
                             ts.setStatus("PENDING");
 
-                            // Save and add to list
-                            TransferSuggestion saved = transferSuggestionRepository.save(ts);
-                            suggestions.add(saved);
+                            suggestions.add(transferSuggestionRepository.save(ts));
                             
                             excess -= transferQty;
                         }
