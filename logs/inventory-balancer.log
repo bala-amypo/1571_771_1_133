@@ -100480,3 +100480,95 @@ Action:
 
 Identify and stop the process that's listening on port 9001 or configure this application to listen on another port.
 
+2025-12-26T17:47:33.211Z  INFO 193587 --- [demo] [main] com.example.demo.DemoApplication         : Starting DemoApplication using Java 17.0.17 with PID 193587 (/home/coder/Workspace/demo/target/classes started by coder in /home/coder/Workspace/demo)
+2025-12-26T17:47:33.216Z DEBUG 193587 --- [demo] [main] com.example.demo.DemoApplication         : Running with Spring Boot v3.3.5, Spring v6.1.14
+2025-12-26T17:47:33.218Z  INFO 193587 --- [demo] [main] com.example.demo.DemoApplication         : No active profile set, falling back to 1 default profile: "default"
+2025-12-26T17:47:36.115Z  INFO 193587 --- [demo] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-12-26T17:47:36.342Z  INFO 193587 --- [demo] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 218 ms. Found 6 JPA repository interfaces.
+2025-12-26T17:47:38.032Z  INFO 193587 --- [demo] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 9001 (http)
+2025-12-26T17:47:38.046Z  INFO 193587 --- [demo] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-12-26T17:47:38.047Z  INFO 193587 --- [demo] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.31]
+2025-12-26T17:47:38.329Z  INFO 193587 --- [demo] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-12-26T17:47:38.331Z  INFO 193587 --- [demo] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 4987 ms
+2025-12-26T17:47:38.733Z  INFO 193587 --- [demo] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-12-26T17:47:38.840Z  INFO 193587 --- [demo] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.3.Final
+2025-12-26T17:47:38.935Z  INFO 193587 --- [demo] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-12-26T17:47:39.538Z  INFO 193587 --- [demo] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-12-26T17:47:39.622Z  INFO 193587 --- [demo] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-12-26T17:47:40.021Z  INFO 193587 --- [demo] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@2804b13f
+2025-12-26T17:47:40.023Z  INFO 193587 --- [demo] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-12-26T17:47:40.121Z  WARN 193587 --- [demo] [main] org.hibernate.orm.deprecation            : HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-12-26T17:47:40.122Z  WARN 193587 --- [demo] [main] org.hibernate.orm.deprecation            : HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2025-12-26T17:47:43.731Z  INFO 193587 --- [demo] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-12-26T17:47:44.019Z  INFO 193587 --- [demo] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-12-26T17:47:44.927Z DEBUG 193587 --- [demo] [main] c.e.d.security.JwtAuthenticationFilter   : Filter 'jwtAuthenticationFilter' configured for use
+2025-12-26T17:47:45.134Z  INFO 193587 --- [demo] [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name customUserDetailsService
+2025-12-26T17:47:45.616Z  INFO 193587 --- [demo] [main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2025-12-26T17:47:46.916Z  WARN 193587 --- [demo] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-12-26T17:47:48.439Z  WARN 193587 --- [demo] [main] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.context.ApplicationContextException: Failed to start bean 'webServerStartStop'
+2025-12-26T17:47:48.442Z  INFO 193587 --- [demo] [main] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-12-26T17:47:48.444Z  INFO 193587 --- [demo] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-12-26T17:47:48.513Z  INFO 193587 --- [demo] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-12-26T17:47:48.533Z  INFO 193587 --- [demo] [main] .s.b.a.l.ConditionEvaluationReportLogger : 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2025-12-26T17:47:48.608Z ERROR 193587 --- [demo] [main] o.s.b.d.LoggingFailureAnalysisReporter   : 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Web server failed to start. Port 9001 was already in use.
+
+Action:
+
+Identify and stop the process that's listening on port 9001 or configure this application to listen on another port.
+
+2025-12-26T17:48:56.949Z  INFO 193950 --- [demo] [main] com.example.demo.DemoApplication         : Starting DemoApplication using Java 17.0.17 with PID 193950 (/home/coder/Workspace/demo/target/classes started by coder in /home/coder/Workspace/demo)
+2025-12-26T17:48:56.951Z DEBUG 193950 --- [demo] [main] com.example.demo.DemoApplication         : Running with Spring Boot v3.3.5, Spring v6.1.14
+2025-12-26T17:48:56.952Z  INFO 193950 --- [demo] [main] com.example.demo.DemoApplication         : No active profile set, falling back to 1 default profile: "default"
+2025-12-26T17:48:59.931Z  INFO 193950 --- [demo] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-12-26T17:49:00.319Z  INFO 193950 --- [demo] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 376 ms. Found 6 JPA repository interfaces.
+2025-12-26T17:49:02.251Z  INFO 193950 --- [demo] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 9001 (http)
+2025-12-26T17:49:02.326Z  INFO 193950 --- [demo] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-12-26T17:49:02.328Z  INFO 193950 --- [demo] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.31]
+2025-12-26T17:49:02.614Z  INFO 193950 --- [demo] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-12-26T17:49:02.616Z  INFO 193950 --- [demo] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 5481 ms
+2025-12-26T17:49:03.022Z  INFO 193950 --- [demo] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-12-26T17:49:03.122Z  INFO 193950 --- [demo] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.3.Final
+2025-12-26T17:49:03.224Z  INFO 193950 --- [demo] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-12-26T17:49:03.826Z  INFO 193950 --- [demo] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-12-26T17:49:03.914Z  INFO 193950 --- [demo] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-12-26T17:49:04.339Z  INFO 193950 --- [demo] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@2c08c787
+2025-12-26T17:49:04.341Z  INFO 193950 --- [demo] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-12-26T17:49:04.438Z  WARN 193950 --- [demo] [main] org.hibernate.orm.deprecation            : HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-12-26T17:49:04.439Z  WARN 193950 --- [demo] [main] org.hibernate.orm.deprecation            : HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2025-12-26T17:49:08.036Z  INFO 193950 --- [demo] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-12-26T17:49:08.411Z  INFO 193950 --- [demo] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-12-26T17:49:09.315Z DEBUG 193950 --- [demo] [main] c.e.d.security.JwtAuthenticationFilter   : Filter 'jwtAuthenticationFilter' configured for use
+2025-12-26T17:49:09.632Z  INFO 193950 --- [demo] [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name customUserDetailsService
+2025-12-26T17:49:10.035Z  INFO 193950 --- [demo] [main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2025-12-26T17:49:11.420Z  WARN 193950 --- [demo] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-12-26T17:49:13.115Z  WARN 193950 --- [demo] [main] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.context.ApplicationContextException: Failed to start bean 'webServerStartStop'
+2025-12-26T17:49:13.119Z  INFO 193950 --- [demo] [main] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-12-26T17:49:13.123Z  INFO 193950 --- [demo] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-12-26T17:49:13.131Z  INFO 193950 --- [demo] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-12-26T17:49:13.146Z  INFO 193950 --- [demo] [main] .s.b.a.l.ConditionEvaluationReportLogger : 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2025-12-26T17:49:13.231Z ERROR 193950 --- [demo] [main] o.s.b.d.LoggingFailureAnalysisReporter   : 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Web server failed to start. Port 9001 was already in use.
+
+Action:
+
+Identify and stop the process that's listening on port 9001 or configure this application to listen on another port.
+
