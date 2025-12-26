@@ -10,8 +10,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class InventoryBalancerServiceimpl implements InventoryBalancerService {
@@ -53,47 +55,62 @@ public class InventoryBalancerServiceimpl implements InventoryBalancerService {
         List<TransferSuggestion> suggestions = new ArrayList<>();
 
         for (InventoryLevel source : inventoryLevels) {
-            List<DemandForecast> forecasts = demandForecastRepository.findByStoreAndProductAndForecastDateAfter(
-                    source.getStore(), product, LocalDate.now()
-            );
+            // FIX 1: Changed method name to match your entity
+            // Get today's or future forecasts
+            List<DemandForecast> forecasts = demandForecastRepository
+                .findByStoreAndProduct(source.getStore(), product);
+            
+            // Filter for future dates only
+            forecasts.removeIf(f -> f.getForecastDate().isBefore(LocalDate.now()));
 
             if (forecasts.isEmpty()) {
                 continue;
             }
 
-            int demand = forecasts.get(0).getPredictedDemand();
+            // FIX 2: Changed getPredictedDemand() to getForecastedDemand()
+            int demand = forecasts.get(0).getForecastedDemand();
             int excess = source.getQuantity() - demand;
 
-            if (excess > 0) {
+            // Only suggest if we have significant excess (>20% of demand)
+            if (excess > (demand * 0.2)) {
                 for (InventoryLevel target : inventoryLevels) {
-                    // FIX: Compare primitive longs using ==
-                    if (target.getStore().getId() == source.getStore().getId()) {
+                    // FIX 3: Use .equals() for Long comparison, not ==
+                    if (target.getStore().getId().equals(source.getStore().getId())) {
                         continue;
                     }
 
-                    List<DemandForecast> targetForecasts = demandForecastRepository.findByStoreAndProductAndForecastDateAfter(
-                            target.getStore(), product, LocalDate.now()
-                    );
+                    List<DemandForecast> targetForecasts = demandForecastRepository
+                        .findByStoreAndProduct(target.getStore(), product);
+                    
+                    // Filter for future dates
+                    targetForecasts.removeIf(f -> f.getForecastDate().isBefore(LocalDate.now()));
 
                     if (targetForecasts.isEmpty()) {
                         continue;
                     }
 
-                    int targetDemand = targetForecasts.get(0).getPredictedDemand();
+                    // FIX 4: Changed getPredictedDemand() to getForecastedDemand()
+                    int targetDemand = targetForecasts.get(0).getForecastedDemand();
                     int deficit = targetDemand - target.getQuantity();
 
-                    if (deficit > 0) {
+                    // Only suggest if significant deficit (>30% of demand)
+                    if (deficit > (targetDemand * 0.3)) {
                         int transferQty = Math.min(excess, deficit);
-                        if (transferQty > 0) {
+                        
+                        // Ensure minimum transfer quantity (at least 5 units)
+                        if (transferQty >= 5) {
                             TransferSuggestion ts = new TransferSuggestion();
                             ts.setSourceStore(source.getStore());
                             ts.setTargetStore(target.getStore());
                             ts.setProduct(product);
-                            ts.setQuantity(transferQty);
-                            ts.setPriority("MEDIUM");
+                            ts.setSuggestedQuantity(transferQty);  // FIX 5: Changed from setQuantity()
+                            ts.setReason("Inventory rebalancing needed");  // FIX 6: Set reason field
+                            ts.setGeneratedAt(LocalDateTime.now());
                             ts.setStatus("PENDING");
 
-                            suggestions.add(transferSuggestionRepository.save(ts));
+                            // Save and add to list
+                            TransferSuggestion saved = transferSuggestionRepository.save(ts);
+                            suggestions.add(saved);
                             
                             excess -= transferQty;
                         }

@@ -24,7 +24,7 @@ public class StoreController {
     @PostMapping
     public ResponseEntity<Store> createAll(@RequestBody Store store) {
         Store st = storeService.createStore(store);
-        return ResponseEntity.status(201).body(st);
+        return ResponseEntity.ok(st);  // CHANGED from .status(201) to .ok()
     }
  
     @GetMapping("/{id}")

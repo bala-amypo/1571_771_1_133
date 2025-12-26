@@ -22,7 +22,7 @@ public class ProductController {
     @PostMapping
     public ResponseEntity<Product> createProduct(@RequestBody Product product) {
         Product pr = productService.createProduct(product);
-        return ResponseEntity.status(201).body(pr);
+        return ResponseEntity.ok(pr);  // CHANGED from .status(201) to .ok()
     }
 
     @GetMapping("/{id}")
