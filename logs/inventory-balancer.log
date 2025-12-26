@@ -263,3 +263,30 @@ Caused by: java.lang.NumberFormatException: For input string: "86400000#REMOVECO
 2025-12-26T05:24:24.634Z  INFO 89389 --- [demo] [http-nio-9001-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
 2025-12-26T05:24:24.637Z  INFO 89389 --- [demo] [http-nio-9001-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
 2025-12-26T05:24:34.852Z  INFO 89389 --- [demo] [http-nio-9001-exec-3] o.springdoc.api.AbstractOpenApiResource  : Init duration for springdoc-openapi is: 1992 ms
+2025-12-26T06:26:44.632Z  INFO 101196 --- [demo] [main] com.example.demo.DemoApplication         : Starting DemoApplication using Java 17.0.17 with PID 101196 (/home/coder/Workspace/demo/target/classes started by coder in /home/coder/Workspace/demo)
+2025-12-26T06:26:44.636Z DEBUG 101196 --- [demo] [main] com.example.demo.DemoApplication         : Running with Spring Boot v3.3.4, Spring v6.1.13
+2025-12-26T06:26:44.637Z  INFO 101196 --- [demo] [main] com.example.demo.DemoApplication         : No active profile set, falling back to 1 default profile: "default"
+2025-12-26T06:26:47.937Z  INFO 101196 --- [demo] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-12-26T06:26:48.242Z  INFO 101196 --- [demo] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 223 ms. Found 6 JPA repository interfaces.
+2025-12-26T06:26:50.545Z  INFO 101196 --- [demo] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 9001 (http)
+2025-12-26T06:26:50.558Z  INFO 101196 --- [demo] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-12-26T06:26:50.558Z  INFO 101196 --- [demo] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.30]
+2025-12-26T06:26:50.839Z  INFO 101196 --- [demo] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-12-26T06:26:50.841Z  INFO 101196 --- [demo] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 6013 ms
+2025-12-26T06:26:51.315Z  INFO 101196 --- [demo] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-12-26T06:26:51.431Z  INFO 101196 --- [demo] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.3.Final
+2025-12-26T06:26:51.534Z  INFO 101196 --- [demo] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-12-26T06:26:52.141Z  INFO 101196 --- [demo] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-12-26T06:26:52.233Z  INFO 101196 --- [demo] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-12-26T06:26:53.017Z  INFO 101196 --- [demo] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@17003497
+2025-12-26T06:26:53.020Z  INFO 101196 --- [demo] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-12-26T06:26:53.054Z  WARN 101196 --- [demo] [main] org.hibernate.orm.deprecation            : HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-12-26T06:26:53.055Z  WARN 101196 --- [demo] [main] org.hibernate.orm.deprecation            : HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2025-12-26T06:26:57.108Z  INFO 101196 --- [demo] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-12-26T06:26:57.532Z  INFO 101196 --- [demo] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-12-26T06:26:58.613Z DEBUG 101196 --- [demo] [main] c.e.d.security.JwtAuthenticationFilter   : Filter 'jwtAuthenticationFilter' configured for use
+2025-12-26T06:26:58.752Z  INFO 101196 --- [demo] [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name customUserDetailsService
+2025-12-26T06:26:59.335Z  INFO 101196 --- [demo] [main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2025-12-26T06:27:00.923Z  WARN 101196 --- [demo] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-12-26T06:27:03.130Z  INFO 101196 --- [demo] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 9001 (http) with context path '/'
+2025-12-26T06:27:03.214Z  INFO 101196 --- [demo] [main] com.example.demo.DemoApplication         : Started DemoApplication in 20.302 seconds (process running for 21.806)
