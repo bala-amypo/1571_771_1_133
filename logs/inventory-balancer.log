@@ -34826,3 +34826,8 @@ Caused by: java.lang.NumberFormatException: For input string: "86400000#REMOVECO
 2025-12-26T09:39:12.153Z  INFO 136810 --- [demo] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
 2025-12-26T09:39:12.156Z  INFO 136810 --- [demo] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
 2025-12-26T09:39:12.165Z  INFO 136810 --- [demo] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-12-26T09:43:23.640Z  INFO 138305 --- [demo] [main] c.e.d.MultiLocationInventoryBalancerTest : Starting MultiLocationInventoryBalancerTest using Java 17.0.17 with PID 138305 (/home/coder/Workspace/demo/target/test-classes started by coder in /home/coder/Workspace/demo)
+2025-12-26T09:43:23.642Z DEBUG 138305 --- [demo] [main] c.e.d.MultiLocationInventoryBalancerTest : Running with Spring Boot v3.3.5, Spring v6.1.14
+2025-12-26T09:43:23.643Z  INFO 138305 --- [demo] [main] c.e.d.MultiLocationInventoryBalancerTest : No active profile set, falling back to 1 default profile: "default"
+2025-12-26T09:43:29.815Z  INFO 138305 --- [demo] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-12-26T09:43:30.314Z  INFO 138305 --- [demo] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 489 ms. Found 6 JPA repository interfaces.
