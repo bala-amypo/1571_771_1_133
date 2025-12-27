@@ -6,6 +6,7 @@ import com.example.demo.entity.DemandForecast;
 import com.example.demo.service.DemandForecastService;
 @RestController
 @RequestMapping("/api/forecasts")
+// @SecurityRequirement(name = "bearerAuth")
 public class DemandForecastController {
 
     @Autowired
