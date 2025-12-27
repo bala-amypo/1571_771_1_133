@@ -144965,3 +144965,633 @@ Identify and stop the process that's listening on port 9001 or configure this ap
 2025-12-27T04:06:02.890Z  INFO 200286 --- [demo] [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name customUserDetailsService
 2025-12-27T04:06:06.517Z  INFO 200286 --- [demo] [main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
 2025-12-27T04:06:12.948Z  WARN 200286 --- [demo] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-12-27T04:06:32.256Z DEBUG 200286 --- [demo] [main] c.e.d.security.JwtAuthenticationFilter   : Filter 'jwtAuthenticationFilter' configured for use
+2025-12-27T04:06:32.258Z  INFO 200286 --- [demo] [main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2025-12-27T04:06:32.258Z  INFO 200286 --- [demo] [main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2025-12-27T04:06:32.321Z  INFO 200286 --- [demo] [main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 63 ms
+2025-12-27T04:06:32.587Z  INFO 200286 --- [demo] [main] c.e.d.MultiLocationInventoryBalancerTest : Started MultiLocationInventoryBalancerTest in 182.626 seconds (process running for 207.958)
+2025-12-27T04:06:33.874Z DEBUG 200286 --- [demo] [main] org.hibernate.SQL                        : 
+    select
+        ua1_0.id,
+        ua1_0.created_at,
+        ua1_0.email,
+        ua1_0.full_name,
+        ua1_0.password,
+        ua1_0.role,
+        ua1_0.updated_at 
+    from
+        user_account ua1_0 
+    where
+        ua1_0.email=?
+2025-12-27T04:06:36.141Z DEBUG 200286 --- [demo] [main] org.hibernate.SQL                        : 
+    select
+        ua1_0.id,
+        ua1_0.created_at,
+        ua1_0.email,
+        ua1_0.full_name,
+        ua1_0.password,
+        ua1_0.role,
+        ua1_0.updated_at 
+    from
+        user_account ua1_0 
+    where
+        ua1_0.email=?
+2025-12-27T04:06:36.868Z DEBUG 200286 --- [demo] [main] org.hibernate.SQL                        : 
+    select
+        ua1_0.id,
+        ua1_0.created_at,
+        ua1_0.email,
+        ua1_0.full_name,
+        ua1_0.password,
+        ua1_0.role,
+        ua1_0.updated_at 
+    from
+        user_account ua1_0 
+    where
+        ua1_0.email=?
+2025-12-27T04:07:43.612Z DEBUG 200286 --- [demo] [main] org.hibernate.SQL                        : 
+    select
+        ua1_0.id,
+        ua1_0.created_at,
+        ua1_0.email,
+        ua1_0.full_name,
+        ua1_0.password,
+        ua1_0.role,
+        ua1_0.updated_at 
+    from
+        user_account ua1_0 
+    where
+        ua1_0.email=?
+2025-12-27T04:07:44.223Z DEBUG 200286 --- [demo] [main] org.hibernate.SQL                        : 
+    select
+        ua1_0.id,
+        ua1_0.created_at,
+        ua1_0.email,
+        ua1_0.full_name,
+        ua1_0.password,
+        ua1_0.role,
+        ua1_0.updated_at 
+    from
+        user_account ua1_0 
+    where
+        ua1_0.email=?
+2025-12-27T04:07:45.667Z DEBUG 200286 --- [demo] [main] org.hibernate.SQL                        : 
+    select
+        ua1_0.id,
+        ua1_0.created_at,
+        ua1_0.email,
+        ua1_0.full_name,
+        ua1_0.password,
+        ua1_0.role,
+        ua1_0.updated_at 
+    from
+        user_account ua1_0 
+    where
+        ua1_0.email=?
+2025-12-27T04:07:48.314Z DEBUG 200286 --- [demo] [main] org.hibernate.SQL                        : 
+    select
+        ua1_0.id,
+        ua1_0.created_at,
+        ua1_0.email,
+        ua1_0.full_name,
+        ua1_0.password,
+        ua1_0.role,
+        ua1_0.updated_at 
+    from
+        user_account ua1_0 
+    where
+        ua1_0.email=?
+2025-12-27T04:07:48.753Z DEBUG 200286 --- [demo] [main] org.hibernate.SQL                        : 
+    select
+        s1_0.id,
+        s1_0.active,
+        s1_0.address,
+        s1_0.region,
+        s1_0.store_name 
+    from
+        store s1_0 
+    where
+        s1_0.store_name=?
+2025-12-27T04:07:51.599Z DEBUG 200286 --- [demo] [main] org.hibernate.SQL                        : 
+    insert 
+    into
+        store
+        (active, address, region, store_name) 
+    values
+        (?, ?, ?, ?)
+2025-12-27T04:07:53.235Z DEBUG 200286 --- [demo] [main] org.hibernate.SQL                        : 
+    select
+        ua1_0.id,
+        ua1_0.created_at,
+        ua1_0.email,
+        ua1_0.full_name,
+        ua1_0.password,
+        ua1_0.role,
+        ua1_0.updated_at 
+    from
+        user_account ua1_0 
+    where
+        ua1_0.email=?
+2025-12-27T04:07:54.642Z DEBUG 200286 --- [demo] [main] org.hibernate.SQL                        : 
+    select
+        p1_0.id,
+        p1_0.active,
+        p1_0.category,
+        p1_0.name,
+        p1_0.sku 
+    from
+        product p1_0 
+    where
+        p1_0.sku=?
+2025-12-27T04:07:54.924Z DEBUG 200286 --- [demo] [main] org.hibernate.SQL                        : 
+    insert 
+    into
+        product
+        (active, category, name, sku) 
+    values
+        (?, ?, ?, ?)
+2025-12-27T04:07:55.666Z DEBUG 200286 --- [demo] [main] org.hibernate.SQL                        : 
+    select
+        ua1_0.id,
+        ua1_0.created_at,
+        ua1_0.email,
+        ua1_0.full_name,
+        ua1_0.password,
+        ua1_0.role,
+        ua1_0.updated_at 
+    from
+        user_account ua1_0 
+    where
+        ua1_0.email=?
+2025-12-27T04:07:56.012Z DEBUG 200286 --- [demo] [main] org.hibernate.SQL                        : 
+    select
+        s1_0.id,
+        s1_0.active,
+        s1_0.address,
+        s1_0.region,
+        s1_0.store_name 
+    from
+        store s1_0
+2025-12-27T04:07:57.533Z DEBUG 200286 --- [demo] [main] org.hibernate.SQL                        : 
+    select
+        ua1_0.id,
+        ua1_0.created_at,
+        ua1_0.email,
+        ua1_0.full_name,
+        ua1_0.password,
+        ua1_0.role,
+        ua1_0.updated_at 
+    from
+        user_account ua1_0 
+    where
+        ua1_0.email=?
+2025-12-27T04:07:57.639Z DEBUG 200286 --- [demo] [main] org.hibernate.SQL                        : 
+    select
+        p1_0.id,
+        p1_0.active,
+        p1_0.category,
+        p1_0.name,
+        p1_0.sku 
+    from
+        product p1_0
+2025-12-27T04:07:58.209Z DEBUG 200286 --- [demo] [main] org.hibernate.SQL                        : 
+    select
+        s1_0.id,
+        s1_0.active,
+        s1_0.address,
+        s1_0.region,
+        s1_0.store_name 
+    from
+        store s1_0 
+    where
+        s1_0.store_name=?
+2025-12-27T04:07:58.229Z DEBUG 200286 --- [demo] [main] org.hibernate.SQL                        : 
+    insert 
+    into
+        store
+        (active, address, region, store_name) 
+    values
+        (?, ?, ?, ?)
+2025-12-27T04:07:58.373Z DEBUG 200286 --- [demo] [main] org.hibernate.SQL                        : 
+    select
+        s1_0.id,
+        s1_0.active,
+        s1_0.address,
+        s1_0.region,
+        s1_0.store_name 
+    from
+        store s1_0 
+    where
+        s1_0.id=?
+2025-12-27T04:07:58.434Z DEBUG 200286 --- [demo] [main] org.hibernate.SQL                        : 
+    select
+        s1_0.id,
+        s1_0.active,
+        s1_0.address,
+        s1_0.region,
+        s1_0.store_name 
+    from
+        store s1_0 
+    where
+        s1_0.store_name=?
+2025-12-27T04:07:58.450Z DEBUG 200286 --- [demo] [main] org.hibernate.SQL                        : 
+    select
+        s1_0.id,
+        s1_0.active,
+        s1_0.address,
+        s1_0.region,
+        s1_0.store_name 
+    from
+        store s1_0 
+    where
+        s1_0.id=?
+2025-12-27T04:07:58.621Z DEBUG 200286 --- [demo] [main] org.hibernate.SQL                        : 
+    update
+        store 
+    set
+        active=?,
+        address=?,
+        region=?,
+        store_name=? 
+    where
+        id=?
+2025-12-27T04:07:58.926Z DEBUG 200286 --- [demo] [main] org.hibernate.SQL                        : 
+    select
+        s1_0.id,
+        s1_0.active,
+        s1_0.address,
+        s1_0.region,
+        s1_0.store_name 
+    from
+        store s1_0 
+    where
+        s1_0.store_name=?
+2025-12-27T04:07:59.029Z DEBUG 200286 --- [demo] [main] org.hibernate.SQL                        : 
+    insert 
+    into
+        store
+        (active, address, region, store_name) 
+    values
+        (?, ?, ?, ?)
+2025-12-27T04:07:59.125Z DEBUG 200286 --- [demo] [main] org.hibernate.SQL                        : 
+    select
+        s1_0.id,
+        s1_0.active,
+        s1_0.address,
+        s1_0.region,
+        s1_0.store_name 
+    from
+        store s1_0 
+    where
+        s1_0.id=?
+2025-12-27T04:07:59.233Z DEBUG 200286 --- [demo] [main] org.hibernate.SQL                        : 
+    select
+        s1_0.id,
+        s1_0.active,
+        s1_0.address,
+        s1_0.region,
+        s1_0.store_name 
+    from
+        store s1_0 
+    where
+        s1_0.id=?
+2025-12-27T04:07:59.242Z DEBUG 200286 --- [demo] [main] org.hibernate.SQL                        : 
+    update
+        store 
+    set
+        active=?,
+        address=?,
+        region=?,
+        store_name=? 
+    where
+        id=?
+2025-12-27T04:07:59.349Z DEBUG 200286 --- [demo] [main] org.hibernate.SQL                        : 
+    select
+        s1_0.id,
+        s1_0.active,
+        s1_0.address,
+        s1_0.region,
+        s1_0.store_name 
+    from
+        store s1_0 
+    where
+        s1_0.id=?
+2025-12-27T04:07:59.574Z DEBUG 200286 --- [demo] [main] org.hibernate.SQL                        : 
+    select
+        p1_0.id,
+        p1_0.active,
+        p1_0.category,
+        p1_0.name,
+        p1_0.sku 
+    from
+        product p1_0 
+    where
+        p1_0.sku=?
+2025-12-27T04:07:59.625Z DEBUG 200286 --- [demo] [main] org.hibernate.SQL                        : 
+    insert 
+    into
+        product
+        (active, category, name, sku) 
+    values
+        (?, ?, ?, ?)
+2025-12-27T04:07:59.710Z DEBUG 200286 --- [demo] [main] org.hibernate.SQL                        : 
+    select
+        p1_0.id,
+        p1_0.active,
+        p1_0.category,
+        p1_0.name,
+        p1_0.sku 
+    from
+        product p1_0 
+    where
+        p1_0.id=?
+2025-12-27T04:07:59.819Z DEBUG 200286 --- [demo] [main] org.hibernate.SQL                        : 
+    select
+        p1_0.id,
+        p1_0.active,
+        p1_0.category,
+        p1_0.name,
+        p1_0.sku 
+    from
+        product p1_0 
+    where
+        p1_0.id=?
+2025-12-27T04:07:59.858Z DEBUG 200286 --- [demo] [main] org.hibernate.SQL                        : 
+    update
+        product 
+    set
+        active=?,
+        category=?,
+        name=?,
+        sku=? 
+    where
+        id=?
+2025-12-27T04:07:59.946Z DEBUG 200286 --- [demo] [main] org.hibernate.SQL                        : 
+    select
+        p1_0.id,
+        p1_0.active,
+        p1_0.category,
+        p1_0.name,
+        p1_0.sku 
+    from
+        product p1_0 
+    where
+        p1_0.id=?
+2025-12-27T04:08:03.220Z DEBUG 200286 --- [demo] [main] org.hibernate.SQL                        : 
+    select
+        s1_0.id,
+        s1_0.active,
+        s1_0.address,
+        s1_0.region,
+        s1_0.store_name 
+    from
+        store s1_0 
+    where
+        s1_0.store_name=?
+2025-12-27T04:08:03.517Z DEBUG 200286 --- [demo] [main] org.hibernate.SQL                        : 
+    insert 
+    into
+        store
+        (active, address, region, store_name) 
+    values
+        (?, ?, ?, ?)
+2025-12-27T04:08:03.872Z DEBUG 200286 --- [demo] [main] org.hibernate.SQL                        : 
+    select
+        p1_0.id,
+        p1_0.active,
+        p1_0.category,
+        p1_0.name,
+        p1_0.sku 
+    from
+        product p1_0 
+    where
+        p1_0.sku=?
+2025-12-27T04:08:04.026Z DEBUG 200286 --- [demo] [main] org.hibernate.SQL                        : 
+    insert 
+    into
+        product
+        (active, category, name, sku) 
+    values
+        (?, ?, ?, ?)
+2025-12-27T04:08:04.930Z DEBUG 200286 --- [demo] [main] org.hibernate.SQL                        : 
+    select
+        ua1_0.id,
+        ua1_0.created_at,
+        ua1_0.email,
+        ua1_0.full_name,
+        ua1_0.password,
+        ua1_0.role,
+        ua1_0.updated_at 
+    from
+        user_account ua1_0 
+    where
+        ua1_0.email=?
+2025-12-27T04:08:05.132Z DEBUG 200286 --- [demo] [main] org.hibernate.SQL                        : 
+    select
+        s1_0.id,
+        s1_0.active,
+        s1_0.address,
+        s1_0.region,
+        s1_0.store_name 
+    from
+        store s1_0 
+    where
+        s1_0.id=?
+2025-12-27T04:08:05.209Z DEBUG 200286 --- [demo] [main] org.hibernate.SQL                        : 
+    select
+        p1_0.id,
+        p1_0.active,
+        p1_0.category,
+        p1_0.name,
+        p1_0.sku 
+    from
+        product p1_0 
+    where
+        p1_0.id=?
+2025-12-27T04:08:08.037Z DEBUG 200286 --- [demo] [main] org.hibernate.SQL                        : 
+    select
+        il1_0.id,
+        il1_0.last_updated,
+        il1_0.product_id,
+        il1_0.quantity,
+        il1_0.store_id 
+    from
+        inventory_level il1_0 
+    where
+        il1_0.store_id=? 
+        and il1_0.product_id=?
+2025-12-27T04:08:08.063Z DEBUG 200286 --- [demo] [main] org.hibernate.SQL                        : 
+    insert 
+    into
+        inventory_level
+        (last_updated, product_id, quantity, store_id) 
+    values
+        (?, ?, ?, ?)
+2025-12-27T04:08:09.211Z DEBUG 200286 --- [demo] [main] org.hibernate.SQL                        : 
+    select
+        s1_0.id,
+        s1_0.active,
+        s1_0.address,
+        s1_0.region,
+        s1_0.store_name 
+    from
+        store s1_0 
+    where
+        s1_0.store_name=?
+2025-12-27T04:08:09.362Z DEBUG 200286 --- [demo] [main] org.hibernate.SQL                        : 
+    insert 
+    into
+        store
+        (active, address, region, store_name) 
+    values
+        (?, ?, ?, ?)
+2025-12-27T04:08:09.425Z DEBUG 200286 --- [demo] [main] org.hibernate.SQL                        : 
+    select
+        p1_0.id,
+        p1_0.active,
+        p1_0.category,
+        p1_0.name,
+        p1_0.sku 
+    from
+        product p1_0 
+    where
+        p1_0.sku=?
+2025-12-27T04:08:09.609Z DEBUG 200286 --- [demo] [main] org.hibernate.SQL                        : 
+    insert 
+    into
+        product
+        (active, category, name, sku) 
+    values
+        (?, ?, ?, ?)
+2025-12-27T04:08:09.737Z DEBUG 200286 --- [demo] [main] org.hibernate.SQL                        : 
+    select
+        s1_0.id,
+        s1_0.active,
+        s1_0.address,
+        s1_0.region,
+        s1_0.store_name 
+    from
+        store s1_0 
+    where
+        s1_0.id=?
+2025-12-27T04:08:09.863Z DEBUG 200286 --- [demo] [main] org.hibernate.SQL                        : 
+    select
+        p1_0.id,
+        p1_0.active,
+        p1_0.category,
+        p1_0.name,
+        p1_0.sku 
+    from
+        product p1_0 
+    where
+        p1_0.id=?
+2025-12-27T04:08:10.023Z DEBUG 200286 --- [demo] [main] org.hibernate.SQL                        : 
+    select
+        il1_0.id,
+        il1_0.last_updated,
+        il1_0.product_id,
+        il1_0.quantity,
+        il1_0.store_id 
+    from
+        inventory_level il1_0 
+    where
+        il1_0.store_id=? 
+        and il1_0.product_id=?
+2025-12-27T04:08:10.127Z DEBUG 200286 --- [demo] [main] org.hibernate.SQL                        : 
+    insert 
+    into
+        inventory_level
+        (last_updated, product_id, quantity, store_id) 
+    values
+        (?, ?, ?, ?)
+2025-12-27T04:08:10.447Z DEBUG 200286 --- [demo] [main] org.hibernate.SQL                        : 
+    select
+        s1_0.id,
+        s1_0.active,
+        s1_0.address,
+        s1_0.region,
+        s1_0.store_name 
+    from
+        store s1_0 
+    where
+        s1_0.id=?
+2025-12-27T04:08:10.617Z DEBUG 200286 --- [demo] [main] org.hibernate.SQL                        : 
+    select
+        p1_0.id,
+        p1_0.active,
+        p1_0.category,
+        p1_0.name,
+        p1_0.sku 
+    from
+        product p1_0 
+    where
+        p1_0.id=?
+2025-12-27T04:08:10.737Z DEBUG 200286 --- [demo] [main] org.hibernate.SQL                        : 
+    select
+        il1_0.id,
+        il1_0.last_updated,
+        il1_0.product_id,
+        il1_0.quantity,
+        il1_0.store_id 
+    from
+        inventory_level il1_0 
+    where
+        il1_0.store_id=? 
+        and il1_0.product_id=?
+2025-12-27T04:08:10.745Z DEBUG 200286 --- [demo] [main] org.hibernate.SQL                        : 
+    select
+        p1_0.id,
+        p1_0.active,
+        p1_0.category,
+        p1_0.name,
+        p1_0.sku 
+    from
+        product p1_0 
+    where
+        p1_0.id=?
+2025-12-27T04:08:10.753Z DEBUG 200286 --- [demo] [main] org.hibernate.SQL                        : 
+    select
+        s1_0.id,
+        s1_0.active,
+        s1_0.address,
+        s1_0.region,
+        s1_0.store_name 
+    from
+        store s1_0 
+    where
+        s1_0.id=?
+2025-12-27T04:08:10.983Z DEBUG 200286 --- [demo] [main] org.hibernate.SQL                        : 
+    select
+        il1_0.id,
+        il1_0.last_updated,
+        p1_0.id,
+        p1_0.active,
+        p1_0.category,
+        p1_0.name,
+        p1_0.sku,
+        il1_0.quantity,
+        s1_0.id,
+        s1_0.active,
+        s1_0.address,
+        s1_0.region,
+        s1_0.store_name 
+    from
+        inventory_level il1_0 
+    left join
+        product p1_0 
+            on p1_0.id=il1_0.product_id 
+    left join
+        store s1_0 
+            on s1_0.id=il1_0.store_id 
+    where
+        il1_0.id=?
+2025-12-27T04:08:11.018Z DEBUG 200286 --- [demo] [main] org.hibernate.SQL                        : 
+    update
+        inventory_level 
+    set
+        last_updated=?,
+        product_id=?,
+        quantity=?,
+        store_id=? 
+    where
+        id=?
