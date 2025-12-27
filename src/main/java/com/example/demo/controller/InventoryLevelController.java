@@ -4,11 +4,11 @@ import com.example.demo.entity.InventoryLevel;
 import com.example.demo.service.InventoryLevelService;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
-// import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 
 @RestController
 @RequestMapping("/api/inventory")
-// @SecurityRequirement(name = "bearerAuth")
+@SecurityRequirement(name = "bearerAuth")
 public class InventoryLevelController {
 
     private final InventoryLevelService inventoryLevelService;
