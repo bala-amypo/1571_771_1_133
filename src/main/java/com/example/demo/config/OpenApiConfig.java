@@ -18,6 +18,7 @@ public class OpenApiConfig {
                         .title("Inventory Balancer API")
                         .version("1.0")
                         .description("API for Multi-Location Inventory Balancer"))
+                
                 .servers(List.of(
                         new Server().url("https://9095.pro604cr.amypo.ai")
                 ));
